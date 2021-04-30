@@ -6,15 +6,18 @@ const UserSchema = new Schema(
     name: {
       type: String,
       lowercase: true,
-      required: [true, 'Name Required']
+      required: [true, 'Name Required'],
+      trim: true
     },
     surname: {
       type: String,
-      lowercase: true
+      lowercase: true,
+      trim: true
     },
     age: {
       type: String,
-      lowercase: true
+      lowercase: true,
+      trim: true
     },
     living: {
       type: String,
@@ -35,11 +38,13 @@ const UserSchema = new Schema(
     },
     city: {
       type: String,
-      lowercase: true
+      lowercase: true,
+      trim: true
     },
     country: {
       type: String,
-      lowercase: true
+      lowercase: true,
+      trim: true
     },
     email: {
       type: String,
@@ -61,7 +66,8 @@ const UserSchema = new Schema(
     phone: {
       type: String,
       maxlength: 15,
-      required: [true, 'Contact Number required']
+      required: [true, 'Contact Number required'],
+      trim: true
     },
     about: {
       type: String,
@@ -73,16 +79,28 @@ const UserSchema = new Schema(
     },
     hoursToSpend: {
       type: String,
-      maxlength: 24
+      maxlength: 2
     },
     size: {
       type: String,
-      enum: ['medium', 'small', 'large', 'extra-large', 'any'],
+      enum: [
+        'Medium: 10-20kg',
+        'Small: less than 10kg',
+        'Big: 20-40kg',
+        'X-Large: over 40kg',
+        'any'
+      ],
       default: 'any'
     },
-    age: {
+    ageOfDog: {
       type: String,
-      enum: ['puppy', 'adult (1 to 6 years)', 'senior (over 6 years)', 'any'],
+      enum: [
+        'less tha a year',
+        '1-3 years',
+        '4-6 years',
+        'over 6 years',
+        'any'
+      ],
       default: 'any'
     },
     houseType: {
