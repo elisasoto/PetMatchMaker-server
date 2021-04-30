@@ -47,7 +47,7 @@ const ShelterSchema = new Schema(
       maxlength: 280
     },
     /* TODO: unique: true? */
-    dogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets', unique: true }]
+    dogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }]
   },
   { timestamps: true }
 );
