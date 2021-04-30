@@ -43,7 +43,12 @@ const PetSchema = new Schema(
       type: String,
       maxlength: 280
     },
-    shelter: { type: mongoose.Schema.Types.ObjectId, ref: 'Shelter' },
+    shelter: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Shelter',
+      unique: true
+    },
+    /* TODO: unique: true? */
     likes: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
     matches: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
   },
@@ -52,6 +57,6 @@ const PetSchema = new Schema(
   }
 );
 
-const model = mongoose.model('Pets', PetsSchema);
+const model = mongoose.model('Pets', PetSchema);
 
 module.exports = model;
