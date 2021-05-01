@@ -1,36 +1,39 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
+require('dotenv').config();
+const cookieSession = require('cookie-session');
+const cors = require('cors');
+const express = require('express');
+const morgan = require('morgan');
+const passport = require('passport');
 
-require("./configs/db");
-const { PORT } = require("./configs/constants");
+require('./configs/db');
+require('./configs/passport');
+const { PORT } = require('./configs/constants');
 
 const app = express();
 
 app.use(
   cors({
     origin: true,
-    credentials: true,
+    credentials: true
   })
 );
 
-app.use(morgan("combined"));
+app.use(morgan('combined'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api", require("./routes"));
+app.use('/api', require('./routes'));
 
 app.use((_, __, next) => {
-  next(new Error("Path Not Found"));
+  next(new Error('Path Not Found'));
 });
 
 app.use((error, _, res, __) => {
   console.log(error);
   res.status(error.code || 400).json({
     success: false,
-    message: error.message,
+    message: error.message
   });
 });
 
