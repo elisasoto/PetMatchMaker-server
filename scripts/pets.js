@@ -1,8 +1,9 @@
 const faker = require('faker');
 
 const PetModel = require('../models/Pets');
+const ShelterModel = require('../models/Shelter');
 
-const petCount = process.env.PETS_ROWS || 150;
+const petCount = process.env.PETS_ROWS || 20;
 
 const rnd = Math.floor(Math.random() * petCount);
 
@@ -24,50 +25,56 @@ const randomBreed = [
 ];
 
 const createPets = async (rowsCount, seed) => {
-  const entries = Array.from({ length: rowsCount }, (_, i) => i);
+  const shelters = await ShelterModel.find({});
+  for (const shelter of shelters) {
+    const id = shelter.get('_id');
 
-  const pets = [];
+    const entries = Array.from({ length: rowsCount }, (_, i) => i);
 
-  for (const entry of entries) {
-    seed && faker.seed(seed + entry);
+    const pets = [];
 
-    const {
-      name: { firstName },
-      lorem: { paragraph },
-      image: { animals },
-      date: { past }
-    } = faker;
+    for (const entry of entries) {
+      seed && faker.seed(seed + entry);
 
-    const name = firstName();
-    const age = randomNumber(1, 20).toString();
-    const ageMonthYear = randomArray(randomMonthYear);
-    const weight = randomNumber(1, 80).toString();
-    const img = animals();
-    const breed = randomArray(randomBreed);
-    const dateArrivalInShelter = past();
-    const about = paragraph();
+      const {
+        name: { firstName },
+        lorem: { paragraph },
+        image: { animals },
+        date: { past }
+      } = faker;
 
-    if (entry === rnd) {
-      console.log('> Dummy pet created!');
+      const name = firstName();
+      const age = randomNumber(1, 20).toString();
+      const ageMonthYear = randomArray(randomMonthYear);
+      const weight = randomNumber(1, 80).toString();
+      const img = animals();
+      const breed = randomArray(randomBreed);
+      const dateArrivalInShelter = past();
+      const about = paragraph();
+
+      if (entry === rnd) {
+        console.log('> Dummy pet created!');
+      }
+
+      pets.push(
+        new PetModel({
+          name,
+          age,
+          ageMonthYear,
+          weight,
+          img,
+          breed,
+          dateArrivalInShelter,
+          about,
+          shelterId: id
+        })
+      );
     }
 
-    pets.push(
-      new PetModel({
-        name,
-        age,
-        ageMonthYear,
-        weight,
-        img,
-        breed,
-        dateArrivalInShelter,
-        about
-      })
-    );
+    await PetModel.insertMany(pets);
+
+    console.info('> pets created!');
   }
-
-  await PetModel.insertMany(pets);
-
-  console.info('> pets created!');
 };
 
 const dropPets = async () => {

@@ -28,7 +28,6 @@ const ShelterSchema = new Schema(
     },
     phone: {
       type: String,
-      maxlength: 15,
       required: [true, 'Contact Number required'],
       trim: true
     },

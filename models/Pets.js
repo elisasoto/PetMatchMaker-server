@@ -42,14 +42,14 @@ const PetSchema = new Schema(
     about: {
       type: String
     },
-    shelter: {
+    shelterId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Shelter',
       unique: true
     },
     /* TODO: unique: true? */
-    likes: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
-    matches: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Users' }],
+    matches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Users' }]
   },
   {
     timestamps: true
