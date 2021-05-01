@@ -48,7 +48,7 @@ const createUsers = async (rowsCount, seed) => {
     const {
       name: { firstName, lastName },
       lorem: { paragraph },
-      image: { animals },
+      image: { people },
       address: { city, country },
       internet: { email, password },
       phone: { phoneNumber },
@@ -58,7 +58,7 @@ const createUsers = async (rowsCount, seed) => {
     const surname = lastName();
     const age = randomNumber(20, 75).toString();
     const living = randomArray(randomLiving);
-    const img = animals();
+    const img = people();
     const userCity = city();
     const userCountry = country();
     const userEmail = email();
