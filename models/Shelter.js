@@ -43,8 +43,7 @@ const ShelterSchema = new Schema(
       trim: true
     },
     about: {
-      type: String,
-      maxlength: 280
+      type: String
     },
     /* TODO: unique: true? */
     dogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }]
