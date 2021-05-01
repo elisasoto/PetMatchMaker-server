@@ -30,10 +30,8 @@ const UserSchema = new Schema(
       ],
       default: 'with parents'
     },
-    /*TODO: Confirm the correct definition of this item*/
     img: {
       type: String,
-      data: Buffer,
       required: true
     },
     city: {
