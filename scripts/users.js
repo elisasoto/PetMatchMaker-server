@@ -30,6 +30,7 @@ const randomAgeDog = [
   'over 6 years',
   'any'
 ];
+const randomBoolean = [true, false];
 const randomHours = ['2', '3', '4'];
 const randomHouseType = ['apartament', 'chalet', 'house with yard'];
 const randomPetLivingArrangement = ['inside house', 'outside house'];
@@ -104,8 +105,8 @@ const createUsers = async (rowsCount, seed) => {
         houseType,
         petLivingArrangement,
         ammenities,
-        otherPets: true,
-        firstPet: true
+        otherPets,
+        firstPet
       })
     );
   }
