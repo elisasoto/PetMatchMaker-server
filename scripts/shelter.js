@@ -25,7 +25,7 @@ const createShelters = async (rowsCount, seed) => {
       phone: { phoneNumber },
       datatype: { boolean }
     } = faker;
-    const name = firstName();
+    const name = companyName();
     const shelterEmail = email();
     const pswd = password();
     const hash = bcrypt.hashSync(pswd, 10);
