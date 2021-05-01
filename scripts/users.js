@@ -10,7 +10,6 @@ const randomArray = (array) => array[Math.floor(Math.random() * array.length)];
 const randomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min)) + min;
 
-const randomAge = Math.floor(Math.random() * 80) + 21;
 const randomLiving = [
   'with parents',
   'with partner and children',
