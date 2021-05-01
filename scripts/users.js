@@ -7,6 +7,8 @@ const userCount = process.env.USERS_ROWS || 50;
 
 const formatNonDigits = (string) => Number(string.replace(/\D/g, ''));
 const randomArray = (array) => array[Math.floor(Math.random() * array.length)];
+const randomNumber = (min, max) =>
+  Math.floor(Math.random() * (max - min)) + min;
 
 const randomAge = Math.floor(Math.random() * 80) + 21;
 const randomLiving = [
@@ -30,7 +32,6 @@ const randomAgeDog = [
   'over 6 years',
   'any'
 ];
-const randomBoolean = [true, false];
 const randomHours = ['2', '3', '4'];
 const randomHouseType = ['apartament', 'chalet', 'house with yard'];
 const randomPetLivingArrangement = ['inside house', 'outside house'];
@@ -56,7 +57,7 @@ const createUsers = async (rowsCount, seed) => {
     } = faker;
     const name = firstName();
     const surname = lastName();
-    const age = randomAge.toString();
+    const age = randomNumber(20, 75).toString();
     const living = randomArray(randomLiving);
     const img = animals();
     const userCity = city();
