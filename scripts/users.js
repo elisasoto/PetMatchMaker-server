@@ -6,9 +6,10 @@ const UserModel = require('../models/Users');
 const userCount = process.env.USERS_ROWS || 50;
 
 const formatNonDigits = (string) => Number(string.replace(/\D/g, ''));
+const randomArray = (array) => array[Math.floor(Math.random() * array.length)];
 
-const randomAge = Math.floor(Math.random() * 20) + 1;
-const randomLinving = [
+const randomAge = Math.floor(Math.random() * 80) + 21;
+const randomLiving = [
   'with parents',
   'with partner and children',
   'with partner only',
@@ -22,13 +23,14 @@ const randomSize = [
   'X-Large: over 40kg',
   'any'
 ];
-const randomAge = [
+const randomAgeDog = [
   'less tha a year',
   '1-3 years',
   '4-6 years',
   'over 6 years',
   'any'
 ];
+const randomHours = ['2', '3', '4'];
 const randomHouseType = ['apartament', 'chalet', 'house with yard'];
 const randomPetLivingArrangement = ['inside house', 'outside house'];
 
@@ -44,7 +46,7 @@ const createUsers = async (rowsCount, seed) => {
 
     const {
       name: { firstName, lastName },
-      lorem: { word, paragraph },
+      lorem: { paragraph },
       image: { animals },
       address: { city, country },
       internet: { email, password },
@@ -53,24 +55,22 @@ const createUsers = async (rowsCount, seed) => {
     } = faker;
     const name = firstName();
     const surname = lastName();
-    const age = randomAge;
-    const living = Math.floor(Math.random() * randomLinving.length);
+    const age = randomAge.toString();
+    const living = randomArray(randomLiving);
     const img = animals();
-    const city = city();
-    const country = country();
-    const email = email();
-    const password = password();
-    const hash = bcrypt.hashSync(password, 10);
+    const userCity = city();
+    const userCountry = country();
+    const userEmail = email();
+    const pswd = password();
+    const hash = bcrypt.hashSync(pswd, 10);
     const phone = formatNonDigits(phoneNumber());
     const about = paragraph();
     const motivations = paragraph();
-    const hoursToSpend = word();
-    const size = Math.floor(Math.random() * randomSize.length);
-    const ageOfDog = Math.floor(Math.random() * randomAge.length);
-    const houseType = Math.floor(Math.random() * randomHouseType.length);
-    const petLivingArrangement = Math.floor(
-      Math.random() * randomPetLivingArrangement.length
-    );
+    const hoursToSpend = randomArray(randomHours);
+    const size = randomArray(randomSize);
+    const ageOfDog = randomArray(randomAgeDog);
+    const houseType = randomArray(randomHouseType);
+    const petLivingArrangement = randomArray(randomPetLivingArrangement);
     const ammenities = paragraph();
     const otherPets = boolean();
     const firstPet = boolean();
@@ -78,40 +78,41 @@ const createUsers = async (rowsCount, seed) => {
     if (entry === rnd) {
       console.log(
         `> Dummy user created! Use these values to login: ${JSON.stringify({
-          email: mail,
+          email: userEmail,
           password: pswd
         })}`
       );
     }
 
-    users.push(new UserModel({
-        name, 
-        surname, 
-        age, 
-        living, 
-        img, 
-        city, 
-        country, 
-        email,
-        password, 
-        hash = bcrypt.hashSync(password, 10),
-        phone, 
-        about, 
-        motivations, 
-        hoursToSpend, 
-        size, 
-        ageOfDog, 
+    users.push(
+      new UserModel({
+        name,
+        surname,
+        age,
+        living,
+        img,
+        city: userCity,
+        country: userCountry,
+        email: userEmail,
+        password: hash,
+        phone,
+        about,
+        motivations,
+        hoursToSpend,
+        size,
+        ageOfDog,
         houseType,
-        petLivingArrangement, 
-        ammenities, 
-        otherPets: true, 
+        petLivingArrangement,
+        ammenities,
+        otherPets: true,
         firstPet: true
-    }));
+      })
+    );
   }
 
   await UserModel.insertMany(users);
 
-  console.info('> users inserted!');
+  console.info('> users created!');
 };
 
 const dropUsers = async () => {

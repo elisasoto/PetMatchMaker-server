@@ -65,17 +65,14 @@ const UserSchema = new Schema(
     },
     phone: {
       type: String,
-      maxlength: 15,
       required: [true, 'Contact Number required'],
       trim: true
     },
     about: {
-      type: String,
-      maxlength: 280
+      type: String
     },
     motivations: {
-      type: String,
-      maxlength: 280
+      type: String
     },
     hoursToSpend: {
       type: String,
@@ -114,8 +111,7 @@ const UserSchema = new Schema(
       default: 'inside house'
     },
     ammenities: {
-      type: String,
-      maxlength: 140
+      type: String
     },
     otherPets: {
       type: Boolean
