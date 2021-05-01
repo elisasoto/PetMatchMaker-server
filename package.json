@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "seeds:create": "node scripts/seeds.js",
+    "seeds:drop": "node scripts/drops.js"
   },
   "keywords": [],
   "author": "",
