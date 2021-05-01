@@ -22,7 +22,7 @@ const PetSchema = new Schema(
     weight: {
       type: String,
       required: true,
-      maxlength: 3,
+      maxlength: 2,
       trim: true
     },
     img: {
@@ -40,8 +40,7 @@ const PetSchema = new Schema(
       trim: true
     },
     about: {
-      type: String,
-      maxlength: 280
+      type: String
     },
     shelter: {
       type: mongoose.Schema.Types.ObjectId,
