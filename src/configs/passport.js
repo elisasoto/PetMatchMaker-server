@@ -7,7 +7,7 @@ const User = require('../../models/Users');
 const Shelter = require('../../models/Shelter');
 
 passport.use(
-  'register',
+  'registerUser',
   new LocalStrategy(
     {
       usernameField: 'email',
@@ -41,7 +41,41 @@ passport.use(
 );
 
 passport.use(
-  'login',
+  'registerShelter',
+  new LocalStrategy(
+    {
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true
+    },
+    (req, email, password, done) => {
+      Shelter.findOne({ email })
+        .then((shelter) => {
+          if (!shelter) {
+            const hash = bcrypt.hashSync(password, 10);
+            const filteredShelter = omitBy(req.body, (value, _) => !value);
+
+            const newShelter = new Shelter({
+              ...filteredShelter,
+              email,
+              password: hash
+            });
+
+            newShelter
+              .save()
+              .then(() => done(null, newShelter))
+              .catch((err) => done(err, null));
+          } else {
+            throw new Error('User already exists');
+          }
+        })
+        .catch((err) => done(err, null));
+    }
+  )
+);
+
+passport.use(
+  'loginUser',
   new LocalStrategy(
     {
       usernameField: 'email',
@@ -64,6 +98,36 @@ passport.use(
           }
 
           done(null, user);
+        })
+        .catch((err) => done(err, null));
+    }
+  )
+);
+
+passport.use(
+  'loginShelter',
+  new LocalStrategy(
+    {
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true // Receive req in case more fields are needed when registering user
+    },
+    (req, email, password, done) => {
+      Shelter.findOne({ email })
+        .then((shelter) => {
+          // If there is no shelter in DB, register it
+          if (!shelter) {
+            throw new Error('User does not exist');
+          }
+
+          const shelterPassword = shelter.get('password');
+          const isValidPassword = bcrypt.compareSync(password, shelterPassword);
+
+          if (!isValidPassword) {
+            throw new Error('Incorrect email and password');
+          }
+
+          done(null, shelter);
         })
         .catch((err) => done(err, null));
     }
