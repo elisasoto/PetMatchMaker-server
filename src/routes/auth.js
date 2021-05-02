@@ -1,10 +1,18 @@
 const router = require('express').Router();
 const passport = require('passport');
+const { isAuthenticated } = require('../middlewares/authentication');
 
 const getUserResponseData = (user) => ({
   name: user.name,
   surname: user.surname,
   email: user.email
+});
+
+router.get('/userShortProfile', [isAuthenticated], (req, res) => {
+  res.status(200).json({
+    data: req.user || process.env.DUMMY_USER,
+    success: true
+  });
 });
 
 router.post('/register/user', (req, res, next) => {
