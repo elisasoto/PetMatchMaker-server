@@ -4,12 +4,13 @@ const bcrypt = require('bcrypt');
 const omitBy = require('lodash/omitBy');
 
 const User = require('../../models/Users');
+const Shelter = require('../../models/Shelter');
 
 passport.use(
   'register',
   new LocalStrategy(
     {
-      emailField: 'email',
+      usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true
     },
@@ -45,11 +46,12 @@ passport.use(
     {
       usernameField: 'email',
       passwordField: 'password',
-      passReqToCallback: true
+      passReqToCallback: true // Receive req in case more fields are needed when registering user
     },
     (req, email, password, done) => {
       User.findOne({ email })
         .then((user) => {
+          // If there is no user in DB, register it
           if (!user) {
             throw new Error('User does not exist');
           }
