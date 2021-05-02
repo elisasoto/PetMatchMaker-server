@@ -22,6 +22,23 @@ app.use(morgan('combined'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_KEY || 'express-auth-cookie']
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Middleware para falsea autenticación
+if (process.env.PREVENT_AUTH && process.env.DUMMY_USER) {
+  app.use((req, res, next) => {
+    req.user = process.env.DUMMY_USER;
+    next();
+  });
+}
 
 app.use('/api', require('./routes'));
 
