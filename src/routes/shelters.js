@@ -2,8 +2,24 @@ const router = require('express').Router();
 const omitBy = require('lodash/omitBy');
 
 const ShelterModel = require('../../models/Shelter');
+const UsersModel = require('../../models/Users');
 
 const { isAuthenticated } = require('../middlewares/authentication');
+
+router.get('/adopters', [isAuthenticated], async (req, res, next) => {
+  // hay que entrar en perfil de perrito?
+  try {
+    const result = await UsersModel.find({});
+
+    res.status(200).json({
+      success: true,
+      count: result.length,
+      data: result
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.put('/edit', [isAuthenticated], async (req, res, next) => {
   try {
