@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
 router.use('/auth', require('./auth'));
-router.use('/users', require('./auth'));
-router.use('/shelters', require('./auth'));
-router.use('/pets', require('./auth'));
+router.use('/users', require('./users'));
+router.use('/shelters', require('./shelters'));
+router.use('/pets', require('./pets'));
 
 module.exports = router;
