@@ -45,7 +45,6 @@ const ShelterSchema = new Schema(
     about: {
       type: String
     },
-    /* TODO: unique: true? */
     dogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }]
   },
   { timestamps: true }
