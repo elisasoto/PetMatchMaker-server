@@ -19,8 +19,8 @@ const SEED = 123;
   };
 
   try {
-    // await createUsers(USERS_ROWS || DEFAULT_ROWS, argsOpts[flag]);
-    //await createShelters(SHELTER_ROWS || DEFAULT_ROWS, argsOpts[flag]);
+    await createUsers(USERS_ROWS || DEFAULT_ROWS, argsOpts[flag]);
+    await createShelters(SHELTER_ROWS || DEFAULT_ROWS, argsOpts[flag]);
     await createPets(20, PETS_ROWS || DEFAULT_ROWS, argsOpts[flag]);
   } catch (error) {
     console.error(error);

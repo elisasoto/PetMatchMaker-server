@@ -7,9 +7,9 @@ const { dropShelters } = require('./shelter');
 
 (async () => {
   try {
-    // await dropUsers();
+    await dropUsers();
     await dropPets();
-    //await dropShelters();
+    await dropShelters();
   } catch (error) {
     console.info('> error: ', error);
   }

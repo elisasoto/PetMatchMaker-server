@@ -64,23 +64,12 @@ const createPets = async (rowsCount) => {
 
   const shelterPromises = shelters
     .map((shelter) => {
-      const petAmount = randomNumber(1, 10);
+      const petAmount = randomNumber(1, 5);
       const randomPets = pets.slice(prevIndex, petAmount);
-      console.log(
-        'randomPets =>',
-        pets.length,
-        prevIndex,
-        petAmount,
-        randomPets.length
-      );
-      if (randomPets.length) {
-        prevIndex = prevIndex + petAmount;
-        return ShelterModel.findByIdAndUpdate(shelter._id, {
-          dogs: randomPets
-        });
-      }
 
-      return null;
+      return ShelterModel.findByIdAndUpdate(shelter._id, {
+        dogs: randomPets
+      });
     })
     .filter(Boolean);
 
