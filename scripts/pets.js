@@ -1,13 +1,11 @@
 const faker = require('faker');
 
 const PetModel = require('../models/Pets');
-
-const petCount = process.env.PETS_ROWS || 150;
-
-const rnd = Math.floor(Math.random() * petCount);
+const ShelterModel = require('../models/Shelter');
 
 const randomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min)) + min;
+
 const randomArray = (array) => array[Math.floor(Math.random() * array.length)];
 
 const randomMonthYear = ['Month', 'Year'];
@@ -23,14 +21,10 @@ const randomBreed = [
   'Basset Hound'
 ];
 
-const createPets = async (rowsCount, seed) => {
-  const entries = Array.from({ length: rowsCount }, (_, i) => i);
-
+const createPets = async (rowsCount) => {
   const pets = [];
 
-  for (const entry of entries) {
-    seed && faker.seed(seed + entry);
-
+  for (let i = 0; i < rowsCount; i++) {
     const {
       name: { firstName },
       lorem: { paragraph },
@@ -46,10 +40,6 @@ const createPets = async (rowsCount, seed) => {
     const breed = randomArray(randomBreed);
     const dateArrivalInShelter = past();
     const about = paragraph();
-
-    if (entry === rnd) {
-      console.log('> Dummy pet created!');
-    }
 
     pets.push(
       new PetModel({
@@ -68,6 +58,34 @@ const createPets = async (rowsCount, seed) => {
   await PetModel.insertMany(pets);
 
   console.info('> pets created!');
+
+  const shelters = await ShelterModel.find({});
+  let prevIndex = 0;
+
+  const shelterPromises = shelters
+    .map((shelter) => {
+      const petAmount = randomNumber(1, 10);
+      const randomPets = pets.slice(prevIndex, petAmount);
+      console.log(
+        'randomPets =>',
+        pets.length,
+        prevIndex,
+        petAmount,
+        randomPets.length
+      );
+      if (randomPets.length) {
+        prevIndex = prevIndex + petAmount;
+        return ShelterModel.findByIdAndUpdate(shelter._id, {
+          dogs: randomPets
+        });
+      }
+
+      return null;
+    })
+    .filter(Boolean);
+
+  await Promise.all(shelterPromises);
+  console.info('> shelters updated!');
 };
 
 const dropPets = async () => {

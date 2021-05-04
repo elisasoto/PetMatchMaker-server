@@ -117,7 +117,6 @@ const UserSchema = new Schema(
     firstPet: {
       type: Boolean
     },
-    /* TODO: unique: true? */
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }],
     matches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }]
   },
