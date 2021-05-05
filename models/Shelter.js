@@ -44,7 +44,7 @@ const ShelterSchema = new Schema(
     about: {
       type: String
     },
-    dogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }]
+    pets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }]
   },
   { timestamps: true }
 );
