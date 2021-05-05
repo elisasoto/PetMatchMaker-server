@@ -42,7 +42,7 @@ const PetSchema = new Schema(
     about: {
       type: String
     },
-    shelter: {
+    shelterId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Shelter'
     },

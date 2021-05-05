@@ -68,9 +68,14 @@ router.put('/edit', [isAuthenticated], async (req, res, next) => {
 router.get('/pet/:petId', [isAuthenticated], async (req, res, next) => {
   const { petId } = req.params;
   try {
-    const singlePet = await (await PetsModel.findById({ _id: petId })).populate(
-      'shelter'
-    );
+    const singlePet = await PetsModel.findById({ _id: petId }).populate({
+      path: 'shelterId',
+      select: {
+        name: 1,
+        country: 1,
+        city: 1
+      }
+    });
 
     res.status(200).json({
       success: true,
