@@ -118,6 +118,7 @@ const UserSchema = new Schema(
       type: Boolean
     },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }],
+    deslikes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }],
     matches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }]
   },
   {

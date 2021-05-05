@@ -54,4 +54,41 @@ router.put('/edit', [isAuthenticated], async (req, res, next) => {
   }
 });
 
+router.put('/deslikes/:petId', [isAuthenticated], async (req, res, next) => {
+  const { petId } = req.params;
+  try {
+    const addDeslikedPet = await UserModel.findOneAndUpdate(
+      { _id: req.user },
+      { $push: { deslikes: petId } },
+      { new: true }
+    );
+    console.log(addDeslikedPet);
+
+    res.status(200).json({
+      success: true,
+      data: addDeslikedPet
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put('/likes/:petId', [isAuthenticated], async (req, res, next) => {
+  const { petId } = req.params;
+  try {
+    const addLikedPet = await UserModel.findOneAndUpdate(
+      { _id: req.user },
+      { $push: { likes: petId } },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      data: addLikedPet
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
