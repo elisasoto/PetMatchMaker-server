@@ -11,18 +11,26 @@ router.get('/pets', [isAuthenticated], async (req, res, next) => {
   const page = req.query.page || 1;
 
   try {
+    const user = await UserModel.findById({ _id: req.user });
+
+    const { likes, deslikes } = user;
+
     const result = await PetsModel.find({})
       .skip(perPage * page - perPage)
       .limit(perPage);
 
+    const filteredPets = result.filter(
+      (pet) => !likes.includes(pet._id) && !deslikes.includes(pet._id)
+    );
+
     const nextPage =
-      result.length < perPage ? null : `?page=${Number(page) + 1}`;
+      filteredPets.length < perPage ? null : `?page=${Number(page) + 1}`;
 
     res.status(200).json({
       success: true,
-      perPage: result.length,
+      perPage: filteredPets.length,
       nextPage: nextPage,
-      data: result
+      data: filteredPets
     });
   } catch (error) {
     next(error);
