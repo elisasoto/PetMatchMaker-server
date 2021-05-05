@@ -2,8 +2,32 @@ const router = require('express').Router();
 const omitBy = require('lodash/omitBy');
 
 const UserModel = require('../../models/Users');
+const PetsModel = require('../../models/Pets');
 
 const { isAuthenticated } = require('../middlewares/authentication');
+
+router.get('/pets', [isAuthenticated], async (req, res, next) => {
+  const perPage = 5;
+  const page = req.query.page || 1;
+
+  try {
+    const result = await PetsModel.find({})
+      .skip(perPage * page - perPage)
+      .limit(perPage);
+
+    const nextPage =
+      result.length < perPage ? null : `?page=${Number(page) + 1}`;
+
+    res.status(200).json({
+      success: true,
+      perPage: result.length,
+      nextPage: nextPage,
+      data: result
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.put('/edit', [isAuthenticated], async (req, res, next) => {
   try {

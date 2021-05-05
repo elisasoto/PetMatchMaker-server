@@ -7,15 +7,8 @@ const UsersModel = require('../../models/Users');
 const { isAuthenticated } = require('../middlewares/authentication');
 
 router.get('/adopters', [isAuthenticated], async (req, res, next) => {
-  // hay que entrar en perfil de perrito?
+  // aqui solo se mostraran en un listado los usuarios que hayan dado swipe right(like) a alguno de los perritos de este shelter
   try {
-    const result = await UsersModel.find({});
-
-    res.status(200).json({
-      success: true,
-      count: result.length,
-      data: result
-    });
   } catch (error) {
     next(error);
   }
