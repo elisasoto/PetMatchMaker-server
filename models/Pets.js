@@ -10,7 +10,7 @@ const PetSchema = new Schema(
       trim: true
     },
     age: {
-      type: String,
+      type: Number,
       required: true,
       maxlength: 2
     },
@@ -20,7 +20,7 @@ const PetSchema = new Schema(
       lowercase: true
     },
     weight: {
-      type: String,
+      type: Number,
       required: true,
       maxlength: 2,
       trim: true
