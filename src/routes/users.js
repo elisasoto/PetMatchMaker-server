@@ -86,6 +86,49 @@ router.put('/edit', [isAuthenticated], async (req, res, next) => {
   }
 });
 
+router.get('/myLikes', [isAuthenticated], async (req, res, next) => {
+  try {
+    if (req.user.likes) {
+      const error = new Error('No favs addd yet');
+      error.code = 404;
+      throw error;
+    }
+
+    const user = await UserModel.findById(req.user).populate({
+      path: 'likes',
+      model: 'Pets',
+      select: {
+        name: 1,
+        age: 1,
+        ageMonthYear: 1,
+        weight: 1,
+        img: 1,
+        breed: 1,
+        dateArrivalInShelter: 1,
+        about: 1,
+        shelterId: 1
+      },
+      populate: {
+        path: 'shelterId',
+        select: {
+          name: 1,
+          email: 1,
+          phone: 1,
+          city: 1,
+          country: 1
+        }
+      }
+    });
+
+    res.status(200).json({
+      success: true,
+      data: user
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/pet/:petId', [isAuthenticated], async (req, res, next) => {
   const { petId } = req.params;
   try {
