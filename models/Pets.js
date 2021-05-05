@@ -46,8 +46,8 @@ const PetSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Shelter'
     },
-    likes: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
-    matches: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' }
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Users' }],
+    matches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Users' }]
   },
   {
     timestamps: true

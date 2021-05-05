@@ -15,6 +15,10 @@ router.get('/pets', [isAuthenticated], async (req, res, next) => {
 
     const { likes, deslikes } = user;
 
+    /*@TODO: Revisar funcion con christian para ver si hay una manera mas optima de paginar sin tener que requerir dos veces el modelo pet*/
+    const totalPets = await PetsModel.find({});
+    const totalPages = Math.floor(totalPets.length / perPage);
+
     const result = await PetsModel.find({})
       .skip(perPage * page - perPage)
       .limit(perPage);
@@ -23,8 +27,7 @@ router.get('/pets', [isAuthenticated], async (req, res, next) => {
       (pet) => !likes.includes(pet._id) && !deslikes.includes(pet._id)
     );
 
-    const nextPage =
-      filteredPets.length < perPage ? null : `?page=${Number(page) + 1}`;
+    const nextPage = page < totalPages ? `?page=${Number(page) + 1}` : null;
 
     res.status(200).json({
       success: true,
@@ -56,6 +59,22 @@ router.put('/edit', [isAuthenticated], async (req, res, next) => {
     res.status(200).json({
       success: true,
       data: result
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/pet/:petId', [isAuthenticated], async (req, res, next) => {
+  const { petId } = req.params;
+  try {
+    const singlePet = await (await PetsModel.findById({ _id: petId })).populate(
+      'shelter'
+    );
+
+    res.status(200).json({
+      success: true,
+      data: singlePet
     });
   } catch (error) {
     next(error);
