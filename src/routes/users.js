@@ -10,7 +10,13 @@ router.get('/profile', [isAuthenticated], async (req, res, next) => {
   console.log(req.user);
 
   try {
-    const result = await UserModel.findById(req.user);
+    const result = await UserModel.findById(req.user, {
+      deslikes: 0,
+      matches: 0,
+      createdAt: 0,
+      updatedAt: 0,
+      __v: 0
+    });
 
     res.status(200).json({
       success: true,
@@ -94,7 +100,7 @@ router.get('/myLikes', [isAuthenticated], async (req, res, next) => {
       throw error;
     }
 
-    const user = await UserModel.findById(req.user).populate({
+    const user = await UserModel.findById(req.user, { likes: 1 }).populate({
       path: 'likes',
       model: 'Pets',
       select: {
@@ -106,6 +112,7 @@ router.get('/myLikes', [isAuthenticated], async (req, res, next) => {
         breed: 1,
         dateArrivalInShelter: 1,
         about: 1,
+        status: 1,
         shelterId: 1
       },
       populate: {
@@ -132,7 +139,10 @@ router.get('/myLikes', [isAuthenticated], async (req, res, next) => {
 router.get('/pet/:petId', [isAuthenticated], async (req, res, next) => {
   const { petId } = req.params;
   try {
-    const singlePet = await PetsModel.findById({ _id: petId }).populate({
+    const singlePet = await PetsModel.findById(
+      { _id: petId },
+      { likes: 0, matches: 0, createdAt: 0, updatedAt: 0, __v: 0 }
+    ).populate({
       path: 'shelterId',
       select: {
         name: 1,

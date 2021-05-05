@@ -9,6 +9,7 @@ const randomNumber = (min, max) =>
 const randomArray = (array) => array[Math.floor(Math.random() * array.length)];
 
 const randomMonthYear = ['Month', 'Year'];
+const randomAvailability = ['Available', 'Adopted'];
 const randomBreed = [
   'Collie',
   'Podenco',
@@ -43,6 +44,7 @@ const createPets = async (rowsCount) => {
     const breed = randomArray(randomBreed);
     const dateArrivalInShelter = past();
     const about = paragraph();
+    const status = randomArray(randomAvailability);
 
     pets.push(
       new PetModel({
@@ -54,6 +56,7 @@ const createPets = async (rowsCount) => {
         breed,
         dateArrivalInShelter,
         about,
+        status,
         shelterId: getId
       })
     );

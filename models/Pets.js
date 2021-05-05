@@ -42,6 +42,11 @@ const PetSchema = new Schema(
     about: {
       type: String
     },
+    status: {
+      type: String,
+      enum: ['Available', 'Adopted'],
+      default: 'Available'
+    },
     shelterId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Shelter'
