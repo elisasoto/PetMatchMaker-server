@@ -23,6 +23,9 @@ const randomBreed = [
 
 const createPets = async (rowsCount) => {
   const pets = [];
+  const shelters = await ShelterModel.find({});
+  const randomShelter = randomArray(shelters);
+  const getId = randomShelter.get('_id');
 
   for (let i = 0; i < rowsCount; i++) {
     const {
@@ -50,7 +53,8 @@ const createPets = async (rowsCount) => {
         img,
         breed,
         dateArrivalInShelter,
-        about
+        about,
+        shelterId: getId
       })
     );
   }
@@ -59,13 +63,11 @@ const createPets = async (rowsCount) => {
 
   console.info('> pets created!');
 
-  const shelters = await ShelterModel.find({});
-  let prevIndex = 0;
-
   const shelterPromises = shelters
     .map((shelter) => {
-      const petAmount = randomNumber(1, 8);
-      const randomPets = pets.slice(prevIndex, petAmount);
+      const petMin = randomNumber(0, 49);
+      const petMax = randomNumber(50, 99);
+      const randomPets = pets.slice(petMin, petMax);
 
       return ShelterModel.findByIdAndUpdate(shelter._id, {
         pets: randomPets
