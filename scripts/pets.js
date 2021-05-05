@@ -36,9 +36,9 @@ const createPets = async (rowsCount) => {
     } = faker;
 
     const name = firstName();
-    const age = randomNumber(1, 20).toString();
+    const age = randomNumber(1, 20);
     const ageMonthYear = randomArray(randomMonthYear);
-    const weight = randomNumber(1, 80).toString();
+    const weight = randomNumber(1, 80);
     const img = animals();
     const breed = randomArray(randomBreed);
     const dateArrivalInShelter = past();

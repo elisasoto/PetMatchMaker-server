@@ -6,6 +6,21 @@ const PetsModel = require('../../models/Pets');
 
 const { isAuthenticated } = require('../middlewares/authentication');
 
+router.get('/profile', [isAuthenticated], async (req, res, next) => {
+  console.log(req.user);
+
+  try {
+    const result = await UserModel.findById(req.user);
+
+    res.status(200).json({
+      success: true,
+      data: result
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/pets', [isAuthenticated], async (req, res, next) => {
   const perPage = 5;
   const page = req.query.page || 1;
@@ -13,15 +28,21 @@ router.get('/pets', [isAuthenticated], async (req, res, next) => {
   try {
     const user = await UserModel.findById({ _id: req.user });
 
-    const { likes, deslikes } = user;
+    // si el array de likes esta vacio, regresar todos los pets sin filtrar
 
-    /*@TODO: Revisar funcion con christian para ver si hay una manera mas optima de paginar sin tener que requerir dos veces el modelo pet*/
+    const { likes, deslikes, size, ageOfDog } = user;
+
+    console.log(user, size, ageOfDog);
+
+    /*@TODO: Revisar funcion con christian para ver si hay una manera mas optima de paginar sin tener que requerir dos veces el modelo pet
+    esta funcion tambien deberia checar los criterios del usuario y buscar los pets de acuerdo a size y age
+    */
     const totalPets = await PetsModel.find({});
     const totalPages = Math.floor(totalPets.length / perPage);
 
-    const result = await PetsModel.find({})
-      .skip(perPage * page - perPage)
-      .limit(perPage);
+    const result = await PetsModel.find({});
+    //.skip(perPage * page - perPage)
+    //.limit(perPage);
 
     const filteredPets = result.filter(
       (pet) => !likes.includes(pet._id) && !deslikes.includes(pet._id)
@@ -111,6 +132,12 @@ router.put('/likes/:petId', [isAuthenticated], async (req, res, next) => {
     const addLikedPet = await UserModel.findOneAndUpdate(
       { _id: req.user },
       { $push: { likes: petId } },
+      { new: true }
+    );
+
+    await PetsModel.findOneAndUpdate(
+      { _id: petId },
+      { $push: { likes: req.user } },
       { new: true }
     );
 
