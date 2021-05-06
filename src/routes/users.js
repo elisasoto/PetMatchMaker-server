@@ -7,8 +7,6 @@ const PetsModel = require('../../models/Pets');
 const { isAuthenticated } = require('../middlewares/authentication');
 
 router.get('/profile', [isAuthenticated], async (req, res, next) => {
-  console.log(req.user);
-
   try {
     const result = await UserModel.findById(req.user, {
       deslikes: 0,
@@ -34,33 +32,52 @@ router.get('/pets', [isAuthenticated], async (req, res, next) => {
   try {
     const user = await UserModel.findById({ _id: req.user });
 
-    // si el array de likes esta vacio, regresar todos los pets sin filtrar
-
     const { likes, deslikes, size, ageOfDog } = user;
 
-    console.log(user, size, ageOfDog);
+    const weightParams = {
+      MEDIUM: { $gte: 11, $lte: 20 },
+      SMALL: { $lte: 10 },
+      BIG: { $gte: 21, $lte: 40 },
+      XXL: { $gte: 41 },
+      ANY: { $gte: 1 }
+    };
 
-    /*@TODO: Revisar funcion con christian para ver si hay una manera mas optima de paginar sin tener que requerir dos veces el modelo pet
-    esta funcion tambien deberia checar los criterios del usuario y buscar los pets de acuerdo a size y age
-    */
-    const totalPets = await PetsModel.find({});
-    const totalPages = Math.floor(totalPets.length / perPage);
+    const ageParams = {
+      PUPPY: { $regex: 'MONTH', $options: 'i' },
+      ADULT: { $regex: 'YEAR', $options: 'i' },
+      ANY: { $regex: '', $options: 'i' }
+    };
+    const unwantedPets = [...likes, ...deslikes];
 
-    const result = await PetsModel.find({});
-    //.skip(perPage * page - perPage)
-    //.limit(perPage);
+    const dbQueryParams = {
+      status: 'Available',
+      weight: weightParams[size],
+      age: ageParams[ageOfDog],
+      _id: { $not: { $in: unwantedPets } }
+    };
 
-    const filteredPets = result.filter(
-      (pet) => !likes.includes(pet._id) && !deslikes.includes(pet._id)
-    );
+    const result = await PetsModel.find(dbQueryParams, {
+      status: 0,
+      likes: 0,
+      matches: 0,
+      createdAt: 0,
+      updatedAt: 0,
+      __v: 0,
+      about: 0,
+      shelterId: 0,
+      dateArrivalInShelter: 0
+    })
+      .skip(perPage * page - perPage)
+      .limit(perPage);
 
-    const nextPage = page < totalPages ? `?page=${Number(page) + 1}` : null;
+    const nextPage =
+      result.length < perPage ? null : `?page=${Number(page) + 1}`;
 
     res.status(200).json({
       success: true,
-      perPage: filteredPets.length,
+      perPage: result.length,
       nextPage: nextPage,
-      data: filteredPets
+      data: result
     });
   } catch (error) {
     next(error);

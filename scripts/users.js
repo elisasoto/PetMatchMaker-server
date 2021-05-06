@@ -11,29 +11,17 @@ const randomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min)) + min;
 
 const randomLiving = [
-  'with parents',
-  'with partner and children',
-  'with partner only',
-  'with roomate',
-  'alone'
+  'WITH PARENTS',
+  'WITH PARTNER AND CHILDREN',
+  'WITH PARTNER ONLY',
+  'WITH ROOMATE',
+  'BY MYSELF'
 ];
-const randomSize = [
-  'Medium: 10-20kg',
-  'Small: less than 10kg',
-  'Big: 20-40kg',
-  'X-Large: over 40kg',
-  'any'
-];
-const randomAgeDog = [
-  'less tha a year',
-  '1-3 years',
-  '4-6 years',
-  'over 6 years',
-  'any'
-];
+const randomSize = ['SMALL', 'MEDIUM', 'BIG', 'XXL', 'ANY'];
+const randomAgeDog = ['PUPPY', 'ADULT', 'ANY'];
 const randomHours = ['2', '3', '4'];
-const randomHouseType = ['apartament', 'chalet', 'house with yard'];
-const randomPetLivingArrangement = ['inside house', 'outside house'];
+const randomHouseType = ['APARTAMENT', 'CHALET', 'HOUSE WITH YARD'];
+const randomPetLivingArrangement = ['INSIDE HOUSE', 'OUTSIDE HOUSE'];
 
 const rnd = Math.floor(Math.random() * userCount);
 

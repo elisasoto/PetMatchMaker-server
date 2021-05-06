@@ -10,14 +10,8 @@ const PetSchema = new Schema(
       trim: true
     },
     age: {
-      type: Number,
-      required: true,
-      maxlength: 2
-    },
-    ageMonthYear: {
       type: String,
-      required: true,
-      lowercase: true
+      required: true
     },
     weight: {
       type: Number,
