@@ -22,13 +22,13 @@ const UserSchema = new Schema(
     living: {
       type: String,
       enum: [
-        'with parents',
-        'with partner and children',
-        'with partner only',
-        'with roomate',
-        'alone'
+        'WITH PARENTS',
+        'WITH PARTNER AND CHILDREN',
+        'WITH PARTNER ONLY',
+        'WITH ROOMATE',
+        'BY MYSELF'
       ],
-      default: 'with parents'
+      default: 'BY MYSELF'
     },
     img: {
       type: String,
@@ -78,35 +78,23 @@ const UserSchema = new Schema(
     },
     size: {
       type: String,
-      enum: [
-        'Medium: 10-20kg',
-        'Small: less than 10kg',
-        'Big: 20-40kg',
-        'X-Large: over 40kg',
-        'any'
-      ],
-      default: 'any'
+      enum: ['SMALL', 'MEDIUM', 'BIG', 'XXL', 'ANY'],
+      default: 'ANY'
     },
     ageOfDog: {
       type: String,
-      enum: [
-        'less tha a year',
-        '1-3 years',
-        '4-6 years',
-        'over 6 years',
-        'any'
-      ],
-      default: 'any'
+      enum: ['PUPPY', 'ADULT', 'ANY'],
+      default: 'ANY'
     },
     houseType: {
       type: String,
-      enum: ['apartament', 'chalet', 'house with yard'],
-      default: 'apartament'
+      enum: ['APARTAMENT', 'CHALET', 'HOUSE WITH YARD'],
+      default: 'APARTAMENT'
     },
     petLivingArrangement: {
       type: String,
-      enum: ['inside house', 'outside house'],
-      default: 'inside house'
+      enum: ['INSIDE HOUSE', 'OUTSIDE HOUSE'],
+      default: 'INSIDE HOUSE'
     },
     ammenities: {
       type: String

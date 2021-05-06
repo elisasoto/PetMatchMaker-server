@@ -8,7 +8,7 @@ const randomNumber = (min, max) =>
 
 const randomArray = (array) => array[Math.floor(Math.random() * array.length)];
 
-const randomMonthYear = ['Month', 'Year'];
+const randomAge = ['3 Months', '8 Years', '7 Years', '1 Year', '8 Months'];
 const randomAvailability = ['Available', 'Adopted'];
 const randomBreed = [
   'Collie',
@@ -37,8 +37,7 @@ const createPets = async (rowsCount) => {
     } = faker;
 
     const name = firstName();
-    const age = randomNumber(1, 20);
-    const ageMonthYear = randomArray(randomMonthYear);
+    const age = randomArray(randomAge);
     const weight = randomNumber(1, 80);
     const img = animals();
     const breed = randomArray(randomBreed);
@@ -50,7 +49,6 @@ const createPets = async (rowsCount) => {
       new PetModel({
         name,
         age,
-        ageMonthYear,
         weight,
         img,
         breed,
