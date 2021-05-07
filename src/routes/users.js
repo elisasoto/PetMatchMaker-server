@@ -100,9 +100,9 @@ router.put('/edit', [isAuthenticated], async (req, res, next) => {
       new: true
     });
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
-      data: result
+      data: 'User Updated'
     });
   } catch (error) {
     next(error);
@@ -180,16 +180,15 @@ router.get('/pet/:petId', [isAuthenticated], async (req, res, next) => {
 router.put('/deslikes/:petId', [isAuthenticated], async (req, res, next) => {
   const { petId } = req.params;
   try {
-    const addDeslikedPet = await UserModel.findOneAndUpdate(
+    await UserModel.findOneAndUpdate(
       { _id: req.user },
       { $push: { deslikes: petId } },
       { new: true }
     );
-    console.log(addDeslikedPet);
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
-      data: addDeslikedPet
+      data: 'Dislikes Updated'
     });
   } catch (error) {
     next(error);
@@ -199,7 +198,7 @@ router.put('/deslikes/:petId', [isAuthenticated], async (req, res, next) => {
 router.put('/likes/:petId', [isAuthenticated], async (req, res, next) => {
   const { petId } = req.params;
   try {
-    const addLikedPet = await UserModel.findOneAndUpdate(
+    await UserModel.findOneAndUpdate(
       { _id: req.user },
       { $push: { likes: petId } },
       { new: true }
@@ -211,9 +210,9 @@ router.put('/likes/:petId', [isAuthenticated], async (req, res, next) => {
       { new: true }
     );
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
-      data: addLikedPet
+      data: 'Likes Updated'
     });
   } catch (error) {
     next(error);
