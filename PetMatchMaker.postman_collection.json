@@ -9,441 +9,646 @@
 			"name": "Auth",
 			"item": [
 				{
-					"name": "User",
+					"name": "User Auth",
 					"item": [
 						{
-							"name": "User Auth",
-							"item": [
-								{
-									"name": "Register User",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"img\": \"http://placeimg.com/640/480/people\",\r\n    \"email\": \"eddie@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\",\r\n    \"phone\": \"786789096\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:4000/api/auth/register/user",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"auth",
-												"register",
-												"user"
-											]
+							"name": "Register User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"img\": \"http://placeimg.com/640/480/people\",\r\n    \"email\": \"eddie@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\",\r\n    \"phone\": \"786789096\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									},
-									"response": []
+									}
 								},
-								{
-									"name": "User Login",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"eddie@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:4000/api/auth/login/user",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"auth",
-												"login",
-												"user"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "User Logout",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"maude_jacobi@gmail.com\",\r\n    \"password\": \"2J1SdSIqOegBeH_\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:4000/api/auth/logout",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"auth",
-												"logout"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get Short Profile",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://localhost:4000/api/auth/userShortProfile",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"auth",
-												"userShortProfile"
-											]
-										}
-									},
-									"response": []
+								"url": {
+									"raw": "http://localhost:4000/api/auth/register/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"register",
+										"user"
+									]
 								}
-							]
+							},
+							"response": []
 						},
 						{
-							"name": "User Requests",
-							"item": [
-								{
-									"name": "Edit User Profile",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"size\": \"Small: less than 10kg\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:4000/api/users/edit",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"users",
-												"edit"
-											]
+							"name": "User Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"eddie@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									},
-									"response": []
+									}
 								},
-								{
-									"name": "Add Liked Dog to Likes in User and User in dogs Likes",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"url": {
-											"raw": "http://localhost:4000/api/users/likes/6092ec8072de7f2354d71d0e",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"users",
-												"likes",
-												"6092ec8072de7f2354d71d0e"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Add DesLiked Dog to Deslikes list",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"url": {
-											"raw": "http://localhost:4000/api/users/deslikes/6092d16b30ae5f41a43c27ea",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"users",
-												"deslikes",
-												"6092d16b30ae5f41a43c27ea"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get all Dogs By Conditions",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://localhost:4000/api/users/pets?page=1",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"users",
-												"pets"
-											],
-											"query": [
-												{
-													"key": "page",
-													"value": "1"
-												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get Dog by Id",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://localhost:4000/api/users/pet/6092ec8072de7f2354d71d13",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"users",
-												"pet",
-												"6092ec8072de7f2354d71d13"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get User Profile Info",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://localhost:4000/api/users/profile",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"users",
-												"profile"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get Populated Likes",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "http://localhost:4000/api/users/myLikes",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"users",
-												"myLikes"
-											]
-										}
-									},
-									"response": []
+								"url": {
+									"raw": "http://localhost:4000/api/auth/login/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"login",
+										"user"
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "User Logout",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"maude_jacobi@gmail.com\",\r\n    \"password\": \"2J1SdSIqOegBeH_\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/auth/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
 				{
-					"name": "Shelter",
+					"name": "Shelter Auth",
 					"item": [
 						{
-							"name": "Shelter Auth",
-							"item": [
-								{
-									"name": "Register Shelter",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"name\": \"Patas\",\r\n    \"email\": \"patas@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\",\r\n    \"phone\": \"786789096\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:4000/api/auth/register/shelter",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"auth",
-												"register",
-												"shelter"
-											]
+							"name": "Register Shelter",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Patas\",\r\n    \"email\": \"patas@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\",\r\n    \"phone\": \"786789096\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									},
-									"response": []
+									}
 								},
-								{
-									"name": "User Login",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"patas@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:4000/api/auth/login/shelter",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"auth",
-												"login",
-												"shelter"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "User Logout",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"maude_jacobi@gmail.com\",\r\n    \"password\": \"2J1SdSIqOegBeH_\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:4000/api/auth/logout",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"auth",
-												"logout"
-											]
-										}
-									},
-									"response": []
+								"url": {
+									"raw": "http://localhost:4000/api/auth/register/shelter",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"register",
+										"shelter"
+									]
 								}
-							]
+							},
+							"response": []
 						},
 						{
-							"name": "Shelter Requests",
-							"item": [
-								{
-									"name": "Edit Shelter Profile",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"about\": \"Lorem ipsum dolor exxdkadinoi doihgoi\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "http://localhost:4000/api/shelters/edit/",
-											"protocol": "http",
-											"host": [
-												"localhost"
-											],
-											"port": "4000",
-											"path": [
-												"api",
-												"shelters",
-												"edit",
-												""
-											]
+							"name": "User Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"patas@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									},
-									"response": []
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/auth/login/shelter",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"login",
+										"shelter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Logout",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"maude_jacobi@gmail.com\",\r\n    \"password\": \"2J1SdSIqOegBeH_\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/auth/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pet Requests",
+					"item": [
+						{
+							"name": "Register One pet",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"name\": \"mati\",\r\n      \"age\": \"9 Years\",\r\n      \"weight\": \"9\",\r\n      \"img\": \"https://yt3.ggpht.com/ytc/AAUvwnhFY3d8qOpu-KNOALIzsq4ECnGwTPwWmVVpkdM9Fg=s900-c-k-c0x00ffffff-no-rj\",\r\n      \"breed\": \"Mastin\",\r\n      \"dateArrivalInShelter\": \"2021-03-23T16:10:18.585+00:00\",\r\n      \"about\": \"lorem ipsum dolor\",\r\n      \"status\": \"Available\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/pets/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"pets",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Dog Profile by Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/pets/:petId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"pets",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "60958bed33018231f8f6f00e"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Pet Profile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"about\": \"Mati is a great dog, perfect to get along with families and kids. She is always looking for someone to accompany. lorem lorem lorem lorem my lorem\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/pets/edit/:petId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"pets",
+										"edit",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "60956c20dac6ec173c8b376c"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Pets From Shelter",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/pets/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"pets",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Pet",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/pets/delete/:petId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"pets",
+										"delete",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "60958bed33018231f8f6f00e"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Adopters Profile for Shelter",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/pets/likes/:petId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"pets",
+										"likes",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "60958bed33018231f8f6f00e"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Short Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/auth/short-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"short-profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Requests",
+			"item": [
+				{
+					"name": "Edit User Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"size\": \"SMALL\",\r\n    \"ageOfDog\": \"PUPPY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Liked Dog to Likes in User and User in dogs Likes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/likes/:petId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"likes",
+								":petId"
+							],
+							"variable": [
+								{
+									"key": "petId",
+									"value": "60958bed33018231f8f6f00e"
 								}
 							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Add DesLiked Dog to Deslikes list",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/deslikes/:petId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"deslikes",
+								":petId"
+							],
+							"variable": [
+								{
+									"key": "petId",
+									"value": "609586a30c457423cc943161"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Dogs By Conditions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/pets?page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"pets"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dog Profile by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/pet/:petId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"pet",
+								":petId"
+							],
+							"variable": [
+								{
+									"key": "petId",
+									"value": "609586a30c457423cc943161"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users Profile Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Populated Likes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/myLikes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"myLikes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shelter Requests",
+			"item": [
+				{
+					"name": "Edit Shelter Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"about\": \"Lorem ipsum dolor exxdkadinoi doihgoi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/shelters/edit/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"shelters",
+								"edit",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ShelterProfile Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/shelters/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"shelters",
+								"profile"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
