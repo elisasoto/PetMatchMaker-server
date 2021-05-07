@@ -8,7 +8,7 @@ const getUserResponseData = (user) => ({
   email: user.email
 });
 
-router.get('/userShortProfile', [isAuthenticated], (req, res) => {
+router.get('/short-profile', [isAuthenticated], (req, res) => {
   res.status(200).json({
     data: req.user || process.env.DUMMY_USER,
     success: true

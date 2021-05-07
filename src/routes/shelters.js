@@ -40,8 +40,7 @@ router.post('/register/pet', [isAuthenticated], async (req, res, next) => {
   try {
     const newPet = new Pet({
       name: req.body.name,
-      age: Number(req.body.age),
-      ageMonthYear: req.body.ageMonthYear,
+      age: req.body.age,
       weight: Number(req.body.weight),
       img: req.body.img,
       breed: req.body.breed,
@@ -51,20 +50,11 @@ router.post('/register/pet', [isAuthenticated], async (req, res, next) => {
       shelterId: req.user
     });
 
-    const shelter = await ShelterModel.findById(req.user);
+    await newPet.save();
 
-    // pillar el shelter y meter el id de este pet en su array
+    await ShelterModel.findByIdAndUpdate(req.user, { pets: newPet });
 
-    newPet
-      .save()
-      .then((pet) => {
-        res.send('pet saved to database');
-      })
-      .catch((err) => {
-        res.status(400).send('unable to save to database');
-      });
-
-    newUser.save();
+    res.send('saved in dataBase');
   } catch (error) {
     next(error);
   }
