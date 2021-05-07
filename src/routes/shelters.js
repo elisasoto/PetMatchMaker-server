@@ -20,7 +20,6 @@ router.get('/profile', [isAuthenticated], async (req, res, next) => {
     const result = await ShelterModel.findById(req.user, {
       createdAt: 0,
       updatedAt: 0,
-      pets: 0,
       __v: 0
     });
 
@@ -28,33 +27,6 @@ router.get('/profile', [isAuthenticated], async (req, res, next) => {
       success: true,
       data: result
     });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// endpoint to delete one from pets array
-// endpoint to modify pet register
-
-router.post('/register/pet', [isAuthenticated], async (req, res, next) => {
-  try {
-    const newPet = new Pet({
-      name: req.body.name,
-      age: req.body.age,
-      weight: Number(req.body.weight),
-      img: req.body.img,
-      breed: req.body.breed,
-      dateArrivalInShelter: req.body.dateArrivalInShelter,
-      about: req.body.about,
-      status: req.body.status,
-      shelterId: req.user
-    });
-
-    await newPet.save();
-
-    await ShelterModel.findByIdAndUpdate(req.user, { pets: newPet });
-
-    res.send('saved in dataBase');
   } catch (error) {
     next(error);
   }
@@ -80,9 +52,9 @@ router.put('/edit', [isAuthenticated], async (req, res, next) => {
       }
     );
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
-      data: result
+      data: 'Shelter Edited'
     });
   } catch (error) {
     next(error);
