@@ -8,7 +8,6 @@ const PetsModel = require('../../models/Pets');
 const { isAuthenticated } = require('../middlewares/authentication');
 
 router.get('/', [isAuthenticated], async (req, res, next) => {
-  console.log(req.user);
   try {
     const shelter = await ShelterModel.findById(req.user, {
       pets: 1,
@@ -29,6 +28,41 @@ router.get('/', [isAuthenticated], async (req, res, next) => {
     res.status(200).json({
       success: true,
       data: shelter
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/likes/:petId', [isAuthenticated], async (req, res, next) => {
+  const { petId } = req.params;
+  try {
+    const adopters = await PetsModel.findById(petId, { likes: 1 }).populate({
+      path: 'likes',
+      model: 'Users',
+      select: {
+        __v: 0,
+        createdAt: 0,
+        updatedAt: 0,
+        _id: 0,
+        likes: 0,
+        deslikes: 0,
+        matches: 0,
+        password: 0,
+        size: 0,
+        ageOfDog: 0
+      }
+    });
+
+    if (!adopters) {
+      const error = new Error('Pet Not found');
+      error.code = 404;
+      throw error;
+    }
+
+    res.status(200).json({
+      success: true,
+      data: adopters
     });
   } catch (error) {
     next(error);
@@ -106,11 +140,18 @@ router.put('/delete/:petId', [isAuthenticated], async (req, res, next) => {
 
 router.get('/:petId', [isAuthenticated], async (req, res, next) => {
   const { petId } = req.params;
+
   try {
     const singlePet = await PetsModel.findById(
       { _id: petId },
       { shelterId: 0, createdAt: 0, updatedAt: 0, __v: 0 }
     );
+
+    if (!singlePet) {
+      const error = new Error('Pet Not found');
+      error.code = 404;
+      throw error;
+    }
 
     res.status(200).json({
       success: true,
