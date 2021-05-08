@@ -5,6 +5,8 @@ const UserModel = require('../../models/Users');
 const PetsModel = require('../../models/Pets');
 
 const { isAuthenticated } = require('../middlewares/authentication');
+const uploader = require('../middlewares/uploader');
+const { uploadToCloudinaryUser } = require('../utils/cloudinary');
 
 router.get('/profile', [isAuthenticated], async (req, res, next) => {
   try {
@@ -84,30 +86,38 @@ router.get('/pets', [isAuthenticated], async (req, res, next) => {
   }
 });
 
-router.put('/edit', [isAuthenticated], async (req, res, next) => {
-  try {
-    const user = await UserModel.findById(req.user);
+router.put(
+  '/edit',
+  [isAuthenticated, uploader.single('img')],
+  async (req, res, next) => {
+    try {
+      const file = await uploadToCloudinaryUser(req.file.path);
+      const user = await UserModel.findById(req.user);
 
-    if (!user) {
-      const error = new Error('User not found');
-      error.code = 404;
-      throw error;
+      if (!user) {
+        const error = new Error('User not found');
+        error.code = 404;
+        throw error;
+      }
+
+      const filteredUser = omitBy(
+        { ...req.body, img: file ? file.secure_url : null },
+        (value, _) => !value
+      );
+
+      await UserModel.findByIdAndUpdate(req.user, filteredUser, {
+        new: true
+      });
+
+      res.status(201).json({
+        success: true,
+        data: 'User Updated'
+      });
+    } catch (error) {
+      next(error);
     }
-
-    const filteredUser = omitBy(req.body, (value, _) => !value);
-
-    const result = await UserModel.findByIdAndUpdate(req.user, filteredUser, {
-      new: true
-    });
-
-    res.status(201).json({
-      success: true,
-      data: 'User Updated'
-    });
-  } catch (error) {
-    next(error);
   }
-});
+);
 
 router.get('/myLikes', [isAuthenticated], async (req, res, next) => {
   try {

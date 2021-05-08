@@ -17,8 +17,39 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Eduardo\",\r\n    \"img\": \"http://placeimg.com/640/480/people\",\r\n    \"email\": \"eddie@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\",\r\n    \"phone\": \"786789096\"\r\n}",
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "elisa",
+											"type": "text"
+										},
+										{
+											"key": "surname",
+											"value": "soto",
+											"type": "text"
+										},
+										{
+											"key": "img",
+											"type": "file",
+											"src": "/C:/Users/elisa/OneDrive/Desktop/my_img.jpeg"
+										},
+										{
+											"key": "email",
+											"value": "elisasotoperez@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "lakdo8iy8yohh",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "7876540912823",
+											"type": "text"
+										}
+									],
 									"options": {
 										"raw": {
 											"language": "json"
@@ -49,7 +80,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"eddie@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\"\r\n}",
+									"raw": "{\r\n    \"email\": \"elisasotoperez@gmail.com\",\r\n    \"password\": \"lakdo8iy8yohh\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -217,8 +248,49 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n      \"name\": \"mati\",\r\n      \"age\": \"9 Years\",\r\n      \"weight\": \"9\",\r\n      \"img\": \"https://yt3.ggpht.com/ytc/AAUvwnhFY3d8qOpu-KNOALIzsq4ECnGwTPwWmVVpkdM9Fg=s900-c-k-c0x00ffffff-no-rj\",\r\n      \"breed\": \"Mastin\",\r\n      \"dateArrivalInShelter\": \"2021-03-23T16:10:18.585+00:00\",\r\n      \"about\": \"lorem ipsum dolor\",\r\n      \"status\": \"Available\"\r\n    }",
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "mati",
+											"type": "text"
+										},
+										{
+											"key": "age",
+											"value": "9 Years",
+											"type": "text"
+										},
+										{
+											"key": "weight",
+											"value": "8",
+											"type": "text"
+										},
+										{
+											"key": "img",
+											"type": "file",
+											"src": "/C:/Users/elisa/OneDrive/Desktop/my_img.jpeg"
+										},
+										{
+											"key": "breed",
+											"value": "Schnauzer",
+											"type": "text"
+										},
+										{
+											"key": "dateArrivalInShelter",
+											"value": "2021-03-14T04:51:43.028+00:00",
+											"type": "text"
+										},
+										{
+											"key": "about",
+											"value": "i am a good good pet!",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "Available",
+											"type": "text"
+										}
+									],
 									"options": {
 										"raw": {
 											"language": "json"
@@ -274,8 +346,49 @@
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"about\": \"Mati is a great dog, perfect to get along with families and kids. She is always looking for someone to accompany. lorem lorem lorem lorem my lorem\"\r\n}",
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "I am a good pet",
+											"type": "text"
+										},
+										{
+											"key": "age",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "weight",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "img",
+											"type": "file",
+											"src": "/C:/Users/elisa/OneDrive/Desktop/my_img.jpeg"
+										},
+										{
+											"key": "breed",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "dateArrivalInShelter",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "about",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text"
+										}
+									],
 									"options": {
 										"raw": {
 											"language": "json"
@@ -298,7 +411,7 @@
 									"variable": [
 										{
 											"key": "petId",
-											"value": "60956c20dac6ec173c8b376c"
+											"value": "609693b8a808184aa0107524"
 										}
 									]
 								}
@@ -416,8 +529,104 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"size\": \"SMALL\",\r\n    \"ageOfDog\": \"PUPPY\"\r\n}",
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "living",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "img",
+									"type": "file",
+									"src": "/C:/Users/elisa/OneDrive/Desktop/my_img.jpeg"
+								},
+								{
+									"key": "city",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "about",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "motivations",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "hoursToSpend",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "ageOfDog",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "petLivingArrangement",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "ammenities",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "otherPets",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "firstPet",
+									"value": "",
+									"type": "text"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"

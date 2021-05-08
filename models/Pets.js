@@ -21,7 +21,6 @@ const PetSchema = new Schema(
     },
     img: {
       type: String,
-      data: Buffer,
       required: true
     },
     breed: {

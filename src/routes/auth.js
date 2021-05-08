@@ -1,10 +1,13 @@
 const router = require('express').Router();
 const passport = require('passport');
+
 const { isAuthenticated } = require('../middlewares/authentication');
+const uploader = require('../middlewares/uploader');
 
 const getUserResponseData = (user) => ({
   name: user.name,
   surname: user.surname,
+  img: user.img,
   email: user.email
 });
 
@@ -15,7 +18,7 @@ router.get('/short-profile', [isAuthenticated], (req, res) => {
   });
 });
 
-router.post('/register/user', (req, res, next) => {
+router.post('/register/user', [uploader.single('img')], (req, res, next) => {
   passport.authenticate('registerUser', (err, user) => {
     if (err) {
       return res.status(402).json({ data: err.message, success: false });
@@ -33,7 +36,7 @@ router.post('/register/user', (req, res, next) => {
   })(req, res, next);
 });
 
-router.post('/register/shelter', (req, res, next) => {
+router.post('/register/shelter', [uploader.single('img')], (req, res, next) => {
   passport.authenticate('registerShelter', (err, user) => {
     if (err) {
       return res.status(402).json({ data: err.message, success: false });
