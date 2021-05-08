@@ -2,7 +2,6 @@ const router = require('express').Router();
 const omitBy = require('lodash/omitBy');
 
 const ShelterModel = require('../../models/Shelter');
-const UsersModel = require('../../models/Users');
 const PetsModel = require('../../models/Pets');
 
 const { isAuthenticated } = require('../middlewares/authentication');
