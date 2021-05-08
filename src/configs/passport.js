@@ -3,6 +3,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const omitBy = require('lodash/omitBy');
 
+const uploader = require('../middlewares/uploader');
+const uploadToCloudinaryUser = require('../utils/cloudinary');
 const User = require('../../models/Users');
 const Shelter = require('../../models/Shelter');
 
@@ -14,13 +16,17 @@ passport.use(
       passwordField: 'password',
       passReqToCallback: true
     },
-    (req, email, password, done) => {
+    async (req, email, password, done) => {
+      const file = await uploadToCloudinaryUser(req.file.path);
+
       User.findOne({ email })
         .then((user) => {
           if (!user) {
             const hash = bcrypt.hashSync(password, 10);
-            const filteredUser = omitBy(req.body, (value, _) => !value);
-
+            const filteredUser = omitBy(
+              { ...req.body, img: file ? file.secure_url : null },
+              (value, _) => !value
+            );
             const newUser = new User({
               ...filteredUser,
               email,

@@ -2,10 +2,11 @@ const router = require('express').Router();
 const omitBy = require('lodash/omitBy');
 
 const ShelterModel = require('../../models/Shelter');
-const UsersModel = require('../../models/Users');
 const PetsModel = require('../../models/Pets');
 
 const { isAuthenticated } = require('../middlewares/authentication');
+const uploader = require('../middlewares/uploader');
+const { uploadToCloudinaryPet } = require('../utils/cloudinary');
 
 router.get('/', [isAuthenticated], async (req, res, next) => {
   try {
@@ -69,58 +70,76 @@ router.get('/likes/:petId', [isAuthenticated], async (req, res, next) => {
   }
 });
 
-router.post('/register', [isAuthenticated], async (req, res, next) => {
-  try {
-    const newPet = new PetsModel({
-      name: req.body.name,
-      age: req.body.age,
-      weight: Number(req.body.weight),
-      img: req.body.img,
-      breed: req.body.breed,
-      dateArrivalInShelter: req.body.dateArrivalInShelter,
-      about: req.body.about,
-      status: req.body.status,
-      shelterId: req.user
-    });
+router.post(
+  '/register',
+  [isAuthenticated, uploader.single('img')],
+  async (req, res, next) => {
+    try {
+      const file = await uploadToCloudinaryPet(req.file.path);
 
-    await newPet.save();
+      const newPet = await new PetsModel({
+        name: req.body.name,
+        age: req.body.age,
+        weight: Number(req.body.weight),
+        img: file
+          ? file.secure_url
+          : 'https://i.pinimg.com/originals/68/1d/82/681d82761579270fb0dd1fdfe08cb424.jpg',
+        breed: req.body.breed,
+        dateArrivalInShelter: req.body.dateArrivalInShelter,
+        about: req.body.about,
+        status: req.body.status,
+        shelterId: req.user
+      });
 
-    await ShelterModel.findByIdAndUpdate(req.user, { $push: { pets: newPet } });
+      await newPet.save();
 
-    res.status(201).json({
-      success: true,
-      data: 'Pet Created'
-    });
-  } catch (error) {
-    next(error);
-  }
-});
+      await ShelterModel.findByIdAndUpdate(req.user, {
+        $push: { pets: newPet }
+      });
 
-router.put('/edit/:petId', [isAuthenticated], async (req, res, next) => {
-  const { petId } = req.params;
-  try {
-    const Pet = await PetsModel.findById(petId);
-
-    if (!Pet) {
-      const error = new Error('Pet not found');
-      error.code = 404;
-      throw error;
+      res.status(201).json({
+        success: true,
+        data: 'Pet Created'
+      });
+    } catch (error) {
+      next(error);
     }
-
-    const filteredPet = omitBy(req.body, (value, _) => !value);
-
-    await PetsModel.findByIdAndUpdate(petId, filteredPet, {
-      new: true
-    });
-
-    res.status(201).json({
-      success: true,
-      data: 'Pet Edited'
-    });
-  } catch (error) {
-    next(error);
   }
-});
+);
+
+router.put(
+  '/edit/:petId',
+  [isAuthenticated, uploader.single('img')],
+  async (req, res, next) => {
+    const { petId } = req.params;
+    const file = await uploadToCloudinaryPet(req.file.path);
+    try {
+      const Pet = await PetsModel.findById(petId);
+
+      if (!Pet) {
+        const error = new Error('Pet not found');
+        error.code = 404;
+        throw error;
+      }
+
+      const filteredPet = omitBy(
+        { ...req.body, img: file ? file.secure_url : null },
+        (value, _) => !value
+      );
+
+      await PetsModel.findByIdAndUpdate(petId, filteredPet, {
+        new: true
+      });
+
+      res.status(201).json({
+        success: true,
+        data: 'Pet Edited'
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.put('/delete/:petId', [isAuthenticated], async (req, res, next) => {
   const { petId } = req.params;

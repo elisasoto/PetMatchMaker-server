@@ -2,18 +2,8 @@ const router = require('express').Router();
 const omitBy = require('lodash/omitBy');
 
 const ShelterModel = require('../../models/Shelter');
-const UsersModel = require('../../models/Users');
-const Pet = require('../../models/Pets');
 
 const { isAuthenticated } = require('../middlewares/authentication');
-
-router.get('/adopters', [isAuthenticated], async (req, res, next) => {
-  // aqui solo se mostraran en un listado los usuarios que hayan dado swipe right(like) a alguno de los perritos de este shelter
-  try {
-  } catch (error) {
-    next(error);
-  }
-});
 
 router.get('/profile', [isAuthenticated], async (req, res, next) => {
   try {
