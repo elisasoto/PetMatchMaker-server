@@ -8,6 +8,7 @@ const { isAuthenticated } = require('../middlewares/authentication');
 router.get('/profile', [isAuthenticated], async (req, res, next) => {
   try {
     const result = await ShelterModel.findById(req.user, {
+      pets: 0,
       createdAt: 0,
       updatedAt: 0,
       __v: 0
