@@ -3,8 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const omitBy = require('lodash/omitBy');
 
-const uploader = require('../middlewares/uploader');
-const uploadToCloudinaryUser = require('../utils/cloudinary');
+const { uploadToCloudinaryUser } = require('../utils/cloudinary');
 const User = require('../../models/Users');
 const Shelter = require('../../models/Shelter');
 

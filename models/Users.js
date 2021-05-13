@@ -100,10 +100,10 @@ const UserSchema = new Schema(
       type: String
     },
     otherPets: {
-      type: Boolean
+      type: String
     },
     firstPet: {
-      type: Boolean
+      type: String
     },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }],
     deslikes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pets' }],
