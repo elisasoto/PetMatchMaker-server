@@ -18,6 +18,7 @@ const randomLiving = [
   'BY MYSELF'
 ];
 const randomSize = ['SMALL', 'MEDIUM', 'BIG', 'XXL', 'ANY'];
+const randomRadioAnswer = ['Yes', 'No'];
 const randomAgeDog = ['PUPPY', 'ADULT', 'ANY'];
 const randomHours = ['2', '3', '4'];
 const randomHouseType = ['APARTAMENT', 'CHALET', 'HOUSE WITH YARD'];
@@ -61,8 +62,8 @@ const createUsers = async (rowsCount, seed) => {
     const houseType = randomArray(randomHouseType);
     const petLivingArrangement = randomArray(randomPetLivingArrangement);
     const ammenities = paragraph();
-    const otherPets = boolean();
-    const firstPet = boolean();
+    const otherPets = randomArray(randomRadioAnswer);
+    const firstPet = randomArray(randomRadioAnswer);
 
     if (entry === rnd) {
       console.log(
