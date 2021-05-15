@@ -163,8 +163,18 @@ router.get('/:petId', [isAuthenticated], async (req, res, next) => {
   try {
     const singlePet = await PetsModel.findById(
       { _id: petId },
-      { shelterId: 0, createdAt: 0, updatedAt: 0, __v: 0 }
-    );
+      { createdAt: 0, updatedAt: 0, __v: 0, matches: 0, _id: 0 }
+    ).populate({
+      path: 'shelterId',
+      select: {
+        name: 1,
+        email: 1,
+        phone: 1,
+        country: 1,
+        city: 1,
+        _id: 0
+      }
+    });
 
     if (!singlePet) {
       const error = new Error('Pet Not found');
