@@ -10,16 +10,18 @@ const { uploadToCloudinaryPet } = require('../utils/cloudinary');
 
 router.get('/', [isAuthenticated], async (req, res, next) => {
   try {
-    const shelter = await ShelterModel.findById(req.user, {
+    const pets = await ShelterModel.findById(req.user, {
       pets: 1,
       _id: 0
     }).populate({
       path: 'pets',
       model: 'Pets',
       select: {
-        likes: 0,
         matches: 0,
-        sheltterId: 0,
+        about: 0,
+        weight: 0,
+        shelterId: 0,
+        dateArrivalInShelter: 0,
         createdAt: 0,
         updatedAt: 0,
         __v: 0
@@ -28,7 +30,7 @@ router.get('/', [isAuthenticated], async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      data: shelter
+      data: pets
     });
   } catch (error) {
     next(error);

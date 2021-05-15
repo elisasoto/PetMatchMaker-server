@@ -49,12 +49,7 @@
 											"value": "7876540912823",
 											"type": "text"
 										}
-									],
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									]
 								},
 								"url": {
 									"raw": "http://localhost:4000/api/auth/register/user",
@@ -174,7 +169,7 @@
 							"response": []
 						},
 						{
-							"name": "User Login",
+							"name": "ShelterLogin",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -252,7 +247,7 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "mati",
+											"value": "bruno",
 											"type": "text"
 										},
 										{
@@ -268,7 +263,7 @@
 										{
 											"key": "img",
 											"type": "file",
-											"src": "/C:/Users/elisa/OneDrive/Desktop/my_img.jpeg"
+											"src": "/C:/Users/elisa/OneDrive/Desktop/5484d9d1eab8ea3017b17e29.jpg"
 										},
 										{
 											"key": "breed",
@@ -290,12 +285,7 @@
 											"value": "Available",
 											"type": "text"
 										}
-									],
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									]
 								},
 								"url": {
 									"raw": "http://localhost:4000/api/pets/register",
@@ -333,7 +323,7 @@
 									"variable": [
 										{
 											"key": "petId",
-											"value": "60958bed33018231f8f6f00e"
+											"value": "609f9189fe2a3e64b80d2fa1"
 										}
 									]
 								}
@@ -388,12 +378,7 @@
 											"value": "",
 											"type": "text"
 										}
-									],
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									]
 								},
 								"url": {
 									"raw": "http://localhost:4000/api/pets/edit/:petId",
@@ -488,8 +473,30 @@
 									"variable": [
 										{
 											"key": "petId",
-											"value": "60958bed33018231f8f6f00e"
+											"value": "609fd4077e5f29111868c870"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Specific Adopter by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/pets/user/609fcba918091835d0a0fe5b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"pets",
+										"user",
+										"609fcba918091835d0a0fe5b"
 									]
 								}
 							},
@@ -543,7 +550,7 @@
 								},
 								{
 									"key": "age",
-									"value": "",
+									"value": "30",
 									"type": "text"
 								},
 								{
@@ -558,12 +565,12 @@
 								},
 								{
 									"key": "city",
-									"value": "",
+									"value": "madrid",
 									"type": "text"
 								},
 								{
 									"key": "country",
-									"value": "",
+									"value": "spain",
 									"type": "text"
 								},
 								{
@@ -670,7 +677,7 @@
 							"variable": [
 								{
 									"key": "petId",
-									"value": "60958bed33018231f8f6f00e"
+									"value": "609fd4077e5f29111868c870"
 								}
 							]
 						}
@@ -814,7 +821,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"about\": \"Lorem ipsum dolor exxdkadinoi doihgoi\"\r\n}",
+							"raw": "{\r\n    \"country\": \"Spain\",\r\n    \"city\": \"Alcala\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
