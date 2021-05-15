@@ -45,13 +45,17 @@ router.get('/likes/:petId', [isAuthenticated], async (req, res, next) => {
         __v: 0,
         createdAt: 0,
         updatedAt: 0,
-        _id: 0,
         likes: 0,
         deslikes: 0,
         matches: 0,
         password: 0,
         size: 0,
-        ageOfDog: 0
+        ageOfDog: 0,
+        phone: 0,
+        living: 0,
+        houseType: 0,
+        petLivingArrangement: 0,
+        email: 0
       }
     });
 
@@ -151,6 +155,37 @@ router.put('/delete/:petId', [isAuthenticated], async (req, res, next) => {
     res.status(201).json({
       success: true,
       data: 'Pet Deleted'
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/user/:userId', [isAuthenticated], async (req, res, next) => {
+  const { userId } = req.params;
+  try {
+    const [foundUser] = await PetsModel.find(
+      {
+        likes: { $in: [userId] }
+      },
+      { likes: 1 }
+    ).populate({
+      path: 'likes',
+      select: {
+        likes: 0,
+        deslikes: 0,
+        matches: 0,
+        _id: 0,
+        __v: 0,
+        createdAt: 0,
+        updatedAt: 0,
+        password: 0
+      }
+    });
+
+    res.status(201).json({
+      success: true,
+      data: foundUser.likes[0]
     });
   } catch (error) {
     next(error);
