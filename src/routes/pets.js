@@ -7,6 +7,7 @@ const PetsModel = require('../../models/Pets');
 const { isAuthenticated } = require('../middlewares/authentication');
 const uploader = require('../middlewares/uploader');
 const { uploadToCloudinaryPet } = require('../utils/cloudinary');
+const { single } = require('../middlewares/uploader');
 
 router.get('/', [isAuthenticated], async (req, res, next) => {
   try {
@@ -121,6 +122,8 @@ router.put(
     const file = await uploadToCloudinaryPet(req.file.path);
     try {
       const Pet = await PetsModel.findById(petId);
+
+      console.log(Pet.dateArrivalInShelter);
 
       if (!Pet) {
         const error = new Error('Pet not found');
