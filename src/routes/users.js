@@ -13,6 +13,7 @@ router.get('/profile', [isAuthenticated], async (req, res, next) => {
     const result = await UserModel.findById(req.user, {
       deslikes: 0,
       matches: 0,
+      password: 0,
       createdAt: 0,
       updatedAt: 0,
       __v: 0
@@ -28,7 +29,7 @@ router.get('/profile', [isAuthenticated], async (req, res, next) => {
 });
 
 router.get('/pets', [isAuthenticated], async (req, res, next) => {
-  const perPage = 5;
+  const perPage = 10;
   const page = req.query.page || 1;
 
   try {
@@ -74,7 +75,6 @@ router.get('/pets', [isAuthenticated], async (req, res, next) => {
 
     const nextPage =
       result.length < perPage ? null : `?page=${Number(page) + 1}`;
-
     res.status(200).json({
       success: true,
       perPage: result.length,
@@ -121,24 +121,15 @@ router.put(
 
 router.get('/myLikes', [isAuthenticated], async (req, res, next) => {
   try {
-    if (req.user.likes) {
-      const error = new Error('No favs addd yet');
-      error.code = 404;
-      throw error;
-    }
-
     const user = await UserModel.findById(req.user, { likes: 1 }).populate({
       path: 'likes',
       model: 'Pets',
       select: {
         name: 1,
         age: 1,
-        ageMonthYear: 1,
-        weight: 1,
         img: 1,
+        likes: 1,
         breed: 1,
-        dateArrivalInShelter: 1,
-        about: 1,
         status: 1,
         shelterId: 1
       },
@@ -154,6 +145,12 @@ router.get('/myLikes', [isAuthenticated], async (req, res, next) => {
       }
     });
 
+    if (user.likes.length === 0 || undefined) {
+      const error = new Error('No favs added yet');
+      error.code = 404;
+      throw error;
+    }
+
     res.status(200).json({
       success: true,
       data: user
@@ -168,7 +165,7 @@ router.get('/pet/:petId', [isAuthenticated], async (req, res, next) => {
   try {
     const singlePet = await PetsModel.findById(
       { _id: petId },
-      { likes: 0, matches: 0, createdAt: 0, updatedAt: 0, __v: 0 }
+      { matches: 0, createdAt: 0, updatedAt: 0, __v: 0 }
     ).populate({
       path: 'shelterId',
       select: {

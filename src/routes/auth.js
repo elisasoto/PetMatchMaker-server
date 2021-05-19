@@ -1,3 +1,4 @@
+const UserModel = require('../../models/Users');
 const router = require('express').Router();
 const passport = require('passport');
 
@@ -6,9 +7,7 @@ const uploader = require('../middlewares/uploader');
 
 const getUserResponseData = (user) => ({
   name: user.name,
-  surname: user.surname,
-  img: user.img,
-  email: user.email
+  img: user.img
 });
 
 router.get('/short-profile', [isAuthenticated], (req, res) => {
@@ -16,6 +15,21 @@ router.get('/short-profile', [isAuthenticated], (req, res) => {
     data: req.user || process.env.DUMMY_USER,
     success: true
   });
+});
+
+router.get('/short-profile', [isAuthenticated], async (req, res, next) => {
+  try {
+    const result = await UserModel.findById(req.user, {
+      img: 1
+    });
+
+    res.status(200).json({
+      success: true,
+      data: result
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post('/register/user', [uploader.single('img')], (req, res, next) => {
