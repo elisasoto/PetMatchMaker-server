@@ -10,13 +10,6 @@ const getUserResponseData = (user) => ({
   img: user.img
 });
 
-router.get('/short-profile', [isAuthenticated], (req, res) => {
-  res.status(200).json({
-    data: req.user || process.env.DUMMY_USER,
-    success: true
-  });
-});
-
 router.get('/short-profile', [isAuthenticated], async (req, res, next) => {
   try {
     const result = await UserModel.findById(req.user, {
