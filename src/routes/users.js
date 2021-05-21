@@ -29,7 +29,7 @@ router.get('/profile', [isAuthenticated], async (req, res, next) => {
 });
 
 router.get('/pets', [isAuthenticated], async (req, res, next) => {
-  const perPage = 10;
+  const perPage = 5;
   const page = req.query.page || 1;
 
   try {
