@@ -146,9 +146,7 @@ router.get('/myLikes', [isAuthenticated], async (req, res, next) => {
     });
 
     if (user.likes.length === 0 || undefined) {
-      const error = new Error('No favs added yet');
-      error.code = 404;
-      throw error;
+      return [];
     }
 
     res.status(200).json({
