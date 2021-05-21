@@ -1,4 +1,5 @@
 const UserModel = require('../../models/Users');
+const ShelterModel = require('../../models/Shelter');
 const router = require('express').Router();
 const passport = require('passport');
 
@@ -24,6 +25,25 @@ router.get('/short-profile', [isAuthenticated], async (req, res, next) => {
     next(error);
   }
 });
+
+router.get(
+  '/short-profile-shelter',
+  [isAuthenticated],
+  async (req, res, next) => {
+    try {
+      const result = await ShelterModel.findById(req.user, {
+        name: 1
+      });
+
+      res.status(200).json({
+        success: true,
+        data: result
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.post('/register/user', [uploader.single('img')], (req, res, next) => {
   passport.authenticate('registerUser', (err, user) => {
