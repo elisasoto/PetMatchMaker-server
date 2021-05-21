@@ -189,7 +189,12 @@ router.put('/deslikes/:petId', [isAuthenticated], async (req, res, next) => {
   try {
     await UserModel.findOneAndUpdate(
       { _id: req.user },
-      { $push: { deslikes: petId } },
+      { $push: { deslikes: petId } }
+    );
+
+    await UserModel.findOneAndUpdate(
+      { _id: req.user },
+      { $pull: { likes: petId } },
       { new: true }
     );
 
