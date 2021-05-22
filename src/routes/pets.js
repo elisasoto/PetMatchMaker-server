@@ -62,10 +62,8 @@ router.get('/likes/:petId', [isAuthenticated], async (req, res, next) => {
       }
     });
 
-    if (!adopters) {
-      const error = new Error('Pet Not found');
-      error.code = 404;
-      throw error;
+    if (adopters.likes.length === 0 || undefined) {
+      throw new Error('No likes for the pet yet');
     }
 
     res.status(200).json({
@@ -200,7 +198,7 @@ router.get('/:petId', [isAuthenticated], async (req, res, next) => {
   try {
     const singlePet = await PetsModel.findById(
       { _id: petId },
-      { createdAt: 0, updatedAt: 0, __v: 0, matches: 0, _id: 0 }
+      { createdAt: 0, updatedAt: 0, __v: 0, matches: 0 }
     ).populate({
       path: 'shelterId',
       select: {

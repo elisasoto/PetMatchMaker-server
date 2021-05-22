@@ -9,6 +9,7 @@ router.get('/profile', [isAuthenticated], async (req, res, next) => {
   try {
     const result = await ShelterModel.findById(req.user, {
       pets: 0,
+      password: 0,
       createdAt: 0,
       updatedAt: 0,
       __v: 0
@@ -45,7 +46,7 @@ router.put('/edit', [isAuthenticated], async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      data: 'Shelter Edited'
+      data: result
     });
   } catch (error) {
     next(error);
