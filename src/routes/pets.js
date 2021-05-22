@@ -122,9 +122,6 @@ router.put(
     const file = await uploadToCloudinaryPet(req.file.path);
     try {
       const Pet = await PetsModel.findById(petId);
-
-      console.log(Pet.dateArrivalInShelter);
-
       if (!Pet) {
         const error = new Error('Pet not found');
         error.code = 404;
