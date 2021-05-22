@@ -3,6 +3,11 @@ const { Schema } = mongoose;
 
 const ShelterSchema = new Schema(
   {
+    role: {
+      type: String,
+      required: true,
+      default: 'shelter'
+    },
     name: {
       type: String,
       lowercase: true,

@@ -8,42 +8,38 @@ const uploader = require('../middlewares/uploader');
 
 const getUserResponseData = (user) => ({
   name: user.name,
+  role: user.role,
   img: user.img
 });
 
 router.get('/short-profile', [isAuthenticated], async (req, res, next) => {
   try {
-    const result = await UserModel.findById(req.user, {
+    const user = await UserModel.findById(req.user, {
+      name: 1,
+      role: 1,
       img: 1
+    });
+
+    if (user) {
+      return res.status(200).json({
+        success: true,
+        data: user
+      });
+    }
+
+    const shelter = await ShelterModel.findById(req.user, {
+      name: 1,
+      role: 1
     });
 
     res.status(200).json({
       success: true,
-      data: result
+      data: shelter
     });
   } catch (error) {
     next(error);
   }
 });
-
-router.get(
-  '/short-profile-shelter',
-  [isAuthenticated],
-  async (req, res, next) => {
-    try {
-      const result = await ShelterModel.findById(req.user, {
-        name: 1
-      });
-
-      res.status(200).json({
-        success: true,
-        data: result
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-);
 
 router.post('/register/user', [uploader.single('img')], (req, res, next) => {
   passport.authenticate('registerUser', (err, user) => {

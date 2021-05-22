@@ -146,7 +146,7 @@ router.get('/myLikes', [isAuthenticated], async (req, res, next) => {
     });
 
     if (user.likes.length === 0 || undefined) {
-      return [];
+      throw new Error('No favs added yet');
     }
 
     res.status(200).json({
@@ -210,14 +210,12 @@ router.put('/likes/:petId', [isAuthenticated], async (req, res, next) => {
   try {
     await UserModel.findOneAndUpdate(
       { _id: req.user },
-      { $push: { likes: petId } },
-      { new: true }
+      { $push: { likes: petId } }
     );
 
     await PetsModel.findOneAndUpdate(
       { _id: petId },
-      { $push: { likes: req.user } },
-      { new: true }
+      { $push: { likes: req.user } }
     );
 
     res.status(201).json({
