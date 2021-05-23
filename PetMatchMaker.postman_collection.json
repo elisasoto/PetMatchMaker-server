@@ -75,7 +75,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"elisasotoperez@gmail.com\",\r\n    \"password\": \"lakdo8iy8yohh\"\r\n}",
+									"raw": "{\r\n    \"email\": \"monilangreo@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -175,7 +175,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"patas@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\"\r\n}",
+									"raw": "{\r\n    \"email\": \"patas@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -323,7 +323,7 @@
 									"variable": [
 										{
 											"key": "petId",
-											"value": "609f9189fe2a3e64b80d2fa1"
+											"value": "609fd4077e5f29111868c870"
 										}
 									]
 								}
@@ -473,7 +473,7 @@
 									"variable": [
 										{
 											"key": "petId",
-											"value": "609fd4077e5f29111868c870"
+											"value": "60a90f0e1f4af802e8b893e6"
 										}
 									]
 								}
@@ -561,7 +561,7 @@
 								{
 									"key": "img",
 									"type": "file",
-									"src": "/C:/Users/elisa/OneDrive/Desktop/my_img.jpeg"
+									"src": []
 								},
 								{
 									"key": "city",
@@ -633,12 +633,7 @@
 									"value": "",
 									"type": "text"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:4000/api/users/edit",
@@ -677,7 +672,7 @@
 							"variable": [
 								{
 									"key": "petId",
-									"value": "609fd4077e5f29111868c870"
+									"value": "60a90f0e1f4af802e8b893e6"
 								}
 							]
 						}
@@ -718,7 +713,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/pets?page=1",
+							"raw": "http://localhost:4000/api/users/pets",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -728,12 +723,6 @@
 								"api",
 								"users",
 								"pets"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -821,7 +810,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"country\": \"Spain\",\r\n    \"city\": \"Alcala\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Patitas\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
