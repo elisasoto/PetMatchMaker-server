@@ -131,7 +131,7 @@ router.put(
       }
 
       const filteredPet = omitBy(
-        { ...req.body, img: file?.secure_url },
+        { ...req.body, img: file?.secure_url, shelterId: req.user },
         (value, _) => !value
       );
 
