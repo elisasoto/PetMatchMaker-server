@@ -3,6 +3,7 @@ const omitBy = require('lodash/omitBy');
 
 const ShelterModel = require('../../models/Shelter');
 const PetsModel = require('../../models/Pets');
+const UserModel = require('../../models/Users');
 
 const { isAuthenticated } = require('../middlewares/authentication');
 const uploader = require('../middlewares/uploader');
@@ -117,8 +118,11 @@ router.put(
   [isAuthenticated, uploader.single('img')],
   async (req, res, next) => {
     const { petId } = req.params;
-    const file = await uploadToCloudinaryPet(req.file.path);
+    let file = null;
     try {
+      if (req.file) {
+        file = await uploadToCloudinaryPet(req.file.path);
+      }
       const Pet = await PetsModel.findById(petId);
       if (!Pet) {
         const error = new Error('Pet not found');
@@ -127,7 +131,7 @@ router.put(
       }
 
       const filteredPet = omitBy(
-        { ...req.body, img: file ? file.secure_url : null },
+        { ...req.body, img: file?.secure_url },
         (value, _) => !value
       );
 
@@ -163,29 +167,20 @@ router.put('/delete/:petId', [isAuthenticated], async (req, res, next) => {
 
 router.get('/user/:userId', [isAuthenticated], async (req, res, next) => {
   const { userId } = req.params;
+
   try {
-    const [foundUser] = await PetsModel.find(
-      {
-        likes: { $in: [userId] }
-      },
-      { likes: 1 }
-    ).populate({
-      path: 'likes',
-      select: {
-        likes: 0,
-        deslikes: 0,
-        matches: 0,
-        _id: 0,
-        __v: 0,
-        createdAt: 0,
-        updatedAt: 0,
-        password: 0
-      }
+    const foundUser = await UserModel.findById(userId, {
+      deslikes: 0,
+      matches: 0,
+      password: 0,
+      createdAt: 0,
+      updatedAt: 0,
+      __v: 0
     });
 
     res.status(201).json({
       success: true,
-      data: foundUser.likes[0]
+      data: foundUser
     });
   } catch (error) {
     next(error);
