@@ -90,8 +90,11 @@ router.put(
   '/edit',
   [isAuthenticated, uploader.single('img')],
   async (req, res, next) => {
+    let file = null;
     try {
-      const file = await uploadToCloudinaryUser(req.file.path);
+      if (req.file) {
+        file = await uploadToCloudinaryPet(req.file.path);
+      }
       const user = await UserModel.findById(req.user);
 
       if (!user) {
