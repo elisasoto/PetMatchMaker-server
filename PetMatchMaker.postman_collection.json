@@ -21,12 +21,13 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "elisa",
+											"value": "remote",
+											"description": "t",
 											"type": "text"
 										},
 										{
 											"key": "surname",
-											"value": "soto",
+											"value": "test",
 											"type": "text"
 										},
 										{
@@ -36,7 +37,7 @@
 										},
 										{
 											"key": "email",
-											"value": "elisasotoperez@gmail.com",
+											"value": "test.remote@gmail.com",
 											"type": "text"
 										},
 										{
@@ -48,16 +49,22 @@
 											"key": "phone",
 											"value": "7876540912823",
 											"type": "text"
+										},
+										{
+											"key": "age",
+											"value": "35",
+											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/auth/register/user",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/auth/register/user",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"auth",
@@ -75,7 +82,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"monilangreo@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+									"raw": "{\r\n    \"email\": \"test.remote@gmail.com\",\r\n    \"password\": \"lakdo8iy8yohh\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -83,12 +90,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/auth/login/user",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/auth/login/user",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"auth",
@@ -117,12 +125,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/auth/logout",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/auth/logout",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"auth",
@@ -144,7 +153,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Patas\",\r\n    \"email\": \"patas@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\",\r\n    \"phone\": \"786789096\"\r\n}",
+									"raw": "{\r\n    \"name\": \"patitas\",\r\n    \"email\": \"patititas@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\",\r\n    \"phone\": \"786789096\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -152,12 +161,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/auth/register/shelter",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/auth/register/shelter",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"auth",
@@ -175,7 +185,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"patas@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+									"raw": "{\r\n    \"email\": \"patititas@gmail.com\",\r\n    \"password\": \"6kvGIQTWCWkvO09\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -183,12 +193,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/auth/login/shelter",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/auth/login/shelter",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"auth",
@@ -217,12 +228,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/auth/logout",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/auth/logout",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"auth",
@@ -263,7 +275,7 @@
 										{
 											"key": "img",
 											"type": "file",
-											"src": "/C:/Users/elisa/OneDrive/Desktop/5484d9d1eab8ea3017b17e29.jpg"
+											"src": "/C:/Users/elisa/OneDrive/Desktop/4ad66eefeeac0da1821837bda5bab703.jpg"
 										},
 										{
 											"key": "breed",
@@ -288,12 +300,13 @@
 									]
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/pets/register",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/pets/register",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"pets",
@@ -309,12 +322,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:4000/api/pets/:petId",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/pets/:petId",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"pets",
@@ -323,7 +337,7 @@
 									"variable": [
 										{
 											"key": "petId",
-											"value": "609fd4077e5f29111868c870"
+											"value": "60b0fb50d06fc300157a5b2f"
 										}
 									]
 								}
@@ -340,12 +354,12 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "I am a good pet",
+											"value": "Bruno",
 											"type": "text"
 										},
 										{
 											"key": "age",
-											"value": "",
+											"value": "8 Months",
 											"type": "text"
 										},
 										{
@@ -356,7 +370,7 @@
 										{
 											"key": "img",
 											"type": "file",
-											"src": "/C:/Users/elisa/OneDrive/Desktop/my_img.jpeg"
+											"src": []
 										},
 										{
 											"key": "breed",
@@ -375,29 +389,24 @@
 										},
 										{
 											"key": "status",
-											"value": "",
+											"value": "Adopted",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/pets/edit/:petId",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/pets/edit/60b0fb50d06fc300157a5b2f",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"pets",
 										"edit",
-										":petId"
-									],
-									"variable": [
-										{
-											"key": "petId",
-											"value": "609693b8a808184aa0107524"
-										}
+										"60b0fb50d06fc300157a5b2f"
 									]
 								}
 							},
@@ -409,12 +418,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:4000/api/pets/",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/pets/",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"pets",
@@ -430,12 +440,13 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:4000/api/pets/delete/:petId",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/pets/delete/:petId",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"pets",
@@ -458,12 +469,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:4000/api/pets/likes/:petId",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/pets/likes/:petId",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"pets",
@@ -473,7 +485,7 @@
 									"variable": [
 										{
 											"key": "petId",
-											"value": "60a90f0e1f4af802e8b893e6"
+											"value": "60b0fb50d06fc300157a5b2f"
 										}
 									]
 								}
@@ -486,17 +498,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:4000/api/pets/user/609fcba918091835d0a0fe5b",
-									"protocol": "http",
+									"raw": "https://petmatchmaker.herokuapp.com/api/pets/user/60b0f8c4d06fc300157a5b2d",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"petmatchmaker",
+										"herokuapp",
+										"com"
 									],
-									"port": "4000",
 									"path": [
 										"api",
 										"pets",
 										"user",
-										"609fcba918091835d0a0fe5b"
+										"60b0f8c4d06fc300157a5b2d"
 									]
 								}
 							},
@@ -510,12 +523,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/auth/short-profile",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/auth/short-profile",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"auth",
@@ -636,12 +650,13 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/users/edit",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/users/edit",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"users",
@@ -657,12 +672,13 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/likes/:petId",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/users/likes/:petId",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"users",
@@ -672,7 +688,7 @@
 							"variable": [
 								{
 									"key": "petId",
-									"value": "60a90f0e1f4af802e8b893e6"
+									"value": "60b0fb50d06fc300157a5b2f"
 								}
 							]
 						}
@@ -685,12 +701,13 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/deslikes/:petId",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/users/deslikes/:petId",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"users",
@@ -700,7 +717,7 @@
 							"variable": [
 								{
 									"key": "petId",
-									"value": "609586a30c457423cc943161"
+									"value": "60afd01627679305a43458f0"
 								}
 							]
 						}
@@ -713,12 +730,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/pets",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/users/pets",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"users",
@@ -734,12 +752,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/pet/:petId",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/users/pet/:petId",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"users",
@@ -749,7 +768,7 @@
 							"variable": [
 								{
 									"key": "petId",
-									"value": "609586a30c457423cc943161"
+									"value": "60afd01627679305a43458f7"
 								}
 							]
 						}
@@ -762,12 +781,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/profile",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/users/profile",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"users",
@@ -783,12 +803,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/myLikes",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/users/myLikes",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"users",
@@ -810,7 +831,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Patitas\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Lomitos\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -818,12 +839,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/shelters/edit/",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/shelters/edit/",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"shelters",
@@ -840,12 +862,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/shelters/profile",
-							"protocol": "http",
+							"raw": "https://petmatchmaker.herokuapp.com/api/shelters/profile",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"petmatchmaker",
+								"herokuapp",
+								"com"
 							],
-							"port": "4000",
 							"path": [
 								"api",
 								"shelters",
