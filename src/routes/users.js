@@ -176,6 +176,12 @@ router.get('/pet/:petId', [isAuthenticated], async (req, res, next) => {
       }
     });
 
+    if (!singlePet) {
+      const error = new Error('Pet not found');
+      error.code = 404;
+      throw error;
+    }
+
     res.status(200).json({
       success: true,
       data: singlePet
