@@ -11,7 +11,12 @@ const { PORT } = require('./configs/constants');
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+    credentials: true
+  })
+);
 
 app.use(morgan('combined'));
 
